@@ -55,6 +55,8 @@ Here's your first chance to practice this:
 
 What is your favorite [emoji](http://www.emoji-cheat-sheet.com/)?
 
->> REPLACE THIS TEXT WITH YOUR RESPONSE
+My favorite emoji is a cat because it reminds me of my two adopted (rescue) cats.
+
+🐈 
 
 
