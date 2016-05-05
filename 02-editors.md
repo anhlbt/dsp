@@ -59,7 +59,7 @@ We will also use Jupyter (IPython) notebooks, but this does not remove the need 
 
 What terminal editor will you use? How did you make your decision?
 
->> REPLACE THIS TEXT WITH YOUR RESPONSE
+I use vim because I learned how to use it in graduate school. The old Sun systems we had to work on **only** had vi (not even vim)!
 
 --
 
@@ -67,6 +67,6 @@ What terminal editor will you use? How did you make your decision?
 
 What graphical editor will you use? How did you make your decision? What are some interesting features of your editor? What are some useful keyboard shortcuts for your editor? How do you customize your editor?
 
->> REPLACE THIS TEXT WITH YOUR RESPONSE
+I use Sublime Text for my graphical editor. I've used it for several years and like the easy customization with packages. My favorite Sublime Text packages are the SFTP and diff packages. I also like multiple cursors and the elaborate find-replace functionality. `cmd-shift-P` is my favorite shortcut, which allows you to search for commands.
 
  
