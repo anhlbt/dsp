@@ -59,7 +59,7 @@ We will also use Jupyter (IPython) notebooks, but this does not remove the need 
 
 What terminal editor will you use? How did you make your decision?
 
-I use vim because I learned how to use it in graduate school. The old Sun systems we had to work on **only** had vi (not even vim)!
+I use vim because I learned how to use it in graduate school. As the above discussion mentions, on some systems, vi/vim is the only option. This was true for me--the old Sun systems we had to work on graduate school **only** had vi (not even vim)!
 
 --
 
