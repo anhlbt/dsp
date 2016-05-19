@@ -72,7 +72,7 @@ def fix_start(s):
     s_begin = s[0]
 
     s = s.replace(s_begin, '*')
-    s[0] = s_begin
+    s = s_begin + s[1:]
 
     return s
 
@@ -93,9 +93,10 @@ def mix_up(a, b):
     'fizzy perm'
     """
 
-    a[:2], b[:2] = b[:2], a[:2]
+    a_new = b[:2] + a[2:]
+    b_new = a[:2] + b[2:]
 
-    return ' '.join([a, b])
+    return ' '.join([a_new, b_new])
 
 
 def verbing(s):
@@ -139,7 +140,15 @@ def not_bad(s):
     >>> not_bad("It's bad yet not")
     "It's bad yet not"
     """
-    raise NotImplementedError
+
+    not_pos = s.find('not')
+    bad_pos = s.find('bad') + len('bad')
+
+    if not_pos < bad_pos:
+        s = s[:not_pos] + 'good' + s[bad_pos:]
+
+    return s
+
 
 
 def front_back(a, b):
@@ -158,4 +167,22 @@ def front_back(a, b):
     >>> front_back('Kitten', 'Donut')
     'KitDontenut'
     """
-    raise NotImplementedError
+
+    from math import ceil
+
+    def _split_string(s):
+        s_len = len(s)
+
+        # Works with Python 2 and 3
+        s_pos = int(ceil(s_len/2.))
+
+        front = s[:s_pos]
+        back = s[s_pos:]
+
+        return front, back
+
+    a_front, a_back = _split_string(a)
+    b_front, b_back = _split_string(b)
+
+    return a_front + b_front + a_back + b_back
+

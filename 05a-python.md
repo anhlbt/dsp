@@ -101,7 +101,7 @@ Explain list comprehensions. Give examples and show equivalents with `map` and `
 
 >> REPLACE THIS TEXT WITH YOUR RESPONSE
 
-# TODO: ANSWER ABOVE QUESTION
+# - [ ] TODO: ANSWER ABOVE QUESTION
 
 ```python
 ## Lambda functions for filtering and mapping
@@ -135,7 +135,7 @@ print(filter(is_weekend, my_favorite_days))                # ['Saturday', 'Sunda
 
 ```
 
-# TODO: add set comprehensions and dictionary comprehensions
+# -[ ] TODO add set comprehensions and dictionary comprehensions
 
 ---
 
