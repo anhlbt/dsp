@@ -15,7 +15,7 @@ def match_ends(words):
     >>> match_ends(['aaa', 'be', 'abc', 'hello'])
     1
     """
-    raise NotImplementedError
+    return sum( [ x[0]==x[-1] for x in words if len(x)>=2 ] )
 
 
 def front_x(words):
@@ -32,7 +32,11 @@ def front_x(words):
     >>> front_x(['mix', 'xyz', 'apple', 'xanadu', 'aardvark'])
     ['xanadu', 'xyz', 'aardvark', 'apple', 'mix']
     """
-    raise NotImplementedError
+
+    x_list = [x for x in words if x[0]=='x']
+    other_list = [x for x in words if x[0]!='x']
+
+    return sorted(x_list) + sorted(other_list)
 
 
 def sort_last(tuples):
@@ -49,7 +53,10 @@ def sort_last(tuples):
     >>> sort_last([(1, 7), (1, 3), (3, 4, 5), (2, 2)])
     [(2, 2), (1, 3), (3, 4, 5), (1, 7)]
     """
-    raise NotImplementedError
+
+    last_sorter = lambda x: x[-1]
+
+    return sorted(tuples, key=last_sorter)
 
 
 def remove_adjacent(nums):
@@ -68,7 +75,12 @@ def remove_adjacent(nums):
     >>> remove_adjacent([])
     []
     """
-    raise NotImplementedError
+
+    # Boolean mask where element is True only if number is different from previous
+    # and first element is always True
+    mask = [ nums[pos] != nums[pos-1] if pos > 0 else True for pos in range(len(nums)) ]
+
+    return [n for (m,n) in zip(mask,nums) if m]
 
 
 def linear_merge(list1, list2):
@@ -85,4 +97,8 @@ def linear_merge(list1, list2):
     >>> linear_merge(['aa', 'aa'], ['aa', 'bb', 'bb'])
     ['aa', 'aa', 'aa', 'bb', 'bb']
     """
-    raise NotImplementedError
+
+    # This should be fast since it uses Python's sorter
+    # but I'm not sure if the instructions are meant to imply
+    # that this function should not be used
+    return sorted(list1 + list2)
