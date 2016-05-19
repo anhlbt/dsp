@@ -23,6 +23,7 @@ How are Python lists and sets similar and different? Give examples of using both
 >> Lists and sets are both mutable container types. However, lists are ordered (and, thus, can be indexed), while sets are not ordered. Sets are much better suited to functions associated with "set theory", like union, intersection, and difference.
 
 >> Example union and intersection comparison:
+
 ```python
 from copy import copy
 
@@ -99,6 +100,8 @@ print(sorted(name_list, key=length_sort))         # ['Joe', 'Zara', 'Frank']
 Explain list comprehensions. Give examples and show equivalents with `map` and `filter`. How do their capabilities compare? Also demonstrate set comprehensions and dictionary comprehensions.
 
 >> REPLACE THIS TEXT WITH YOUR RESPONSE
+
+# TODO: ANSWER ABOVE QUESTION
 
 ```python
 ## Lambda functions for filtering and mapping
