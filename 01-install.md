@@ -46,13 +46,13 @@ cross-platform.
 
 Did you install Python 2 or 3? Why?  
 
-I installed both, as I've had reason to switch between the two for testing purposes. (And I'm writing a book about Python that focuses on version 3 but I know that Allen Downey's book uses Python 2.)
+>> I installed both, as I've had reason to switch between the two for testing purposes. (And I'm writing a book about Python that focuses on version 3 but I know that Allen Downey's book uses Python 2.)
 
 ###Q2. Which Python Version Installed   
 
 How can you check the version of Python installed if you happen to be on an unfamiliar computer?
 
-By typing `python --version` from the command line.
+>> By typing `python --version` from the command line.
 
  
 
