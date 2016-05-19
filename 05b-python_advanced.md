@@ -36,9 +36,12 @@ This data is available in this file:  [faculty.csv](python/faculty.csv)
 ####Q2. Find how many different titles there are, and their frequencies:  Ex:  Assistant Professor, Professor
 
 >> There are three different titles.
-Professor              13
-Associate Professor    12
-Assistant Professor    12
+
+| Title     | Count |
+| --------- | ----- |
+| Professor            | 13 |
+| Associate Professor  | 12 |
+| Assistant Professor  | 12 |
 
 
 ####Q3. Search for email addresses and put them in a list.  Print the list of email addresses.
@@ -47,7 +50,7 @@ Assistant Professor    12
 
 ####Q4. Find how many different email domains there are (Ex:  mail.med.upenn.edu, upenn.edu, email.chop.edu, etc.).  Print the list of unique email domains.
 
->> There are four different email domains.
+>> There are four different email domains.  
 ['mail.med.upenn.edu', 'upenn.edu', 'email.chop.edu', 'cceb.med.upenn.edu']
 
 Place your code in this file: [advanced_python_regex.py](python/advanced_python_regex.py)
@@ -116,4 +119,6 @@ Place your code in this file: [advanced_python_dict.py](python/advanced_python_d
 If you're all done and looking for an extra challenge, then try the below problem:  
 
 ### [Markov](python/markov.py) (Optional)
+
+# -[ ] TODO Finish this
 
