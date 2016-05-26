@@ -19,11 +19,30 @@ for mat in ['A', 'B', 'C', 'D', 'u', 'w']:
     print('Matrix {}: {}'.format(mat, eval(mat).shape))
 
 
+# Q1. Matrix Dimensions:
+# 
+# Matrix A: (2, 3)
+# Matrix B: (2, 2)
+# Matrix C: (3, 2)
+# Matrix D: (2, 3)
+# Matrix u: (1, 4)
+# Matrix w: (4,)
+
+
 print('\nQ2. Vector Operations:\n')
 
 alpha = 6
 for mat in ['u + v', 'u - v', 'alpha*u', 'np.dot(u, v.T)', 'np.linalg.norm(u)']:
     print('Operation {}: {}'.format(mat, eval(mat)))
+
+
+# Q2. Vector Operations:
+# 
+# Operation u + v: [[ 9  7 -4  9]]
+# Operation u - v: [[ 3 -3 -2  1]]
+# Operation alpha*u: [[ 36  12 -18  30]]
+# Operation np.dot(u, v.T): [[51]]
+# Operation np.linalg.norm(u): 8.60232526704
 
 
 print('\nQ3. Matrix Operations:\n')
@@ -34,6 +53,16 @@ for mat in ['A+C', 'A-C.T', 'C.T + 3*D', 'np.dot(B, A)', 'np.dot(B, A.T)']:
     except:
         print('Operation {}: not defined'.format(mat))
 
+# Q3. Matrix Operations:
+# 
+# Operation A+C: not defined
+# Operation A-C.T: [[-4 -7 -3]
+#                   [ 3  6  4]]
+# Operation C.T + 3*D: [[14  3  3]
+#                       [ 2  7  9]]
+# Operation np.dot(B, A): [[-1 -5 -1]
+#                          [ 2  7  4]]
+# Operation np.dot(B, A.T): not defined
 
 print('\nOptional:\n')
 
@@ -42,3 +71,18 @@ for mat in ['np.dot(B, C)', 'np.dot(C, B)', 'np.linalg.matrix_power(B,4)', 'np.d
         print('Operation {}: {}'.format(mat, eval(mat)))
     except:
         print('Operation {}: not defined'.format(mat))
+        
+
+# Optional:
+# 
+# Operation np.dot(B, C): not defined
+# Operation np.dot(C, B): [[ 5 -6]
+#                          [ 9 -8]
+#                          [ 6 -6]]
+# Operation np.linalg.matrix_power(B,4): [[ 1 -4]
+#                                         [ 0  1]]
+# Operation np.dot(A, A.T): [[14 28]
+#                            [28 69]]
+# Operation np.dot(D.T, D): [[10 -4  0]
+#                            [-4  8  8]
+#                            [ 0  8 10]]
