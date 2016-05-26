@@ -64,7 +64,7 @@ Explore these other [ls options](http://www.techonthenet.com/unix/basic/ls.php) 
 
 What does `xargs` do? Give an example of how to use it.
 
-> > `xargs` applies a command to every line of a given input pipe. One common way I use `xargs` is to search for a programming command in a given type of files. This example searches for the pivot_table command in  Jupyter notebooks: `find . -name '*.ipynb' | xargs grep 'pivot_table'
+> > `xargs` applies a command to every line of a given input pipe. One common way I use `xargs` is to search for a programming command in a given type of files. This example searches for the pivot_table command in  Jupyter notebooks: `find . -name '*.ipynb' | xargs grep 'pivot_table'`
 
  
 
