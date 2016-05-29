@@ -32,7 +32,7 @@ for mat in ['A', 'B', 'C', 'D', 'u', 'w']:
 print('\nQ2. Vector Operations:\n')
 
 alpha = 6
-for mat in ['u + v', 'u - v', 'alpha*u', 'np.dot(u, v.T)', 'np.linalg.norm(u)']:
+for mat in ['u + v', 'u - v', 'alpha*u', 'np.inner(u, v)', 'np.linalg.norm(u)']:
     print('Operation {}: {}'.format(mat, eval(mat)))
 
 
@@ -41,7 +41,7 @@ for mat in ['u + v', 'u - v', 'alpha*u', 'np.dot(u, v.T)', 'np.linalg.norm(u)']:
 # Operation u + v: [[ 9  7 -4  9]]
 # Operation u - v: [[ 3 -3 -2  1]]
 # Operation alpha*u: [[ 36  12 -18  30]]
-# Operation np.dot(u, v.T): [[51]]
+# Operation np.inner(u, v): [[51]]
 # Operation np.linalg.norm(u): 8.60232526704
 
 
