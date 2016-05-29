@@ -10,7 +10,7 @@ D = np.array([[3, -2, -1], [1, 2, 3]])
 
 u = np.array([[6, 2, -3, 5]])
 v = np.array([[3, 5, -1, 4]])
-w = np.array([1, 8, 0, 5])
+w = np.array([[1], [8], [0], [5]])
 
 
 print('\nQ1. Matrix Dimensions:\n')
@@ -26,7 +26,7 @@ for mat in ['A', 'B', 'C', 'D', 'u', 'w']:
 # Matrix C: (3, 2)
 # Matrix D: (2, 3)
 # Matrix u: (1, 4)
-# Matrix w: (4,)
+# Matrix w: (4, 1)
 
 
 print('\nQ2. Vector Operations:\n')
