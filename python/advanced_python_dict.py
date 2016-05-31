@@ -5,16 +5,16 @@ from advanced_python_cleaning import faculty
 print(r"""
 Q6.  Create a dictionary in the below format:
 
-	faculty_dict = { 'Ellenberg': [\
-    	          		['Ph.D.', 'Professor', 'sellenbe@upenn.edu'],\
-        	      		['Ph.D.', 'Professor', 'jellenbe@mail.med.upenn.edu']
-            	                  ],
-	                 'Li': [\
-    	          		['Ph.D.', 'Assistant Professor', 'liy3@email.chop.edu'],\
-        	      		['Ph.D.', 'Associate Professor', 'mingyao@mail.med.upenn.edu'],\
-            	  		['Ph.D.', 'Professor', 'hongzhe@upenn.edu']
-                	        ]
-            	   }
+  faculty_dict = { 'Ellenberg': [\
+                    ['Ph.D.', 'Professor', 'sellenbe@upenn.edu'],\
+                    ['Ph.D.', 'Professor', 'jellenbe@mail.med.upenn.edu']
+                                ],
+                   'Li': [\
+                    ['Ph.D.', 'Assistant Professor', 'liy3@email.chop.edu'],\
+                    ['Ph.D.', 'Associate Professor', 'mingyao@mail.med.upenn.edu'],\
+                    ['Ph.D.', 'Professor', 'hongzhe@upenn.edu']
+                          ]
+                 }
 """)
 
 
@@ -31,10 +31,10 @@ print(r"""
 Q7.  The previous dictionary does not have the best design for keys.  Create a new dictionary with keys as:
 
 
-	professor_dict = {('Susan', 'Ellenberg'): ['Ph.D.', 'Professor', 'sellenbe@upenn.edu'],\
-	                  ('Jonas', 'Ellenberg'): ['Ph.D.', 'Professor', 'jellenbe@mail.med.upenn.edu'],\
-                	  ('Yimei', 'Li'): ['Ph.D.', 'Assistant Professor', 'liy3@email.chop.edu'],\
-                 	  ('Mingyao','Li'): ['Ph.D.', 'Associate Professor', 'mingyao@mail.med.upenn.edu'],\
+  professor_dict = {('Susan', 'Ellenberg'): ['Ph.D.', 'Professor', 'sellenbe@upenn.edu'],\
+                    ('Jonas', 'Ellenberg'): ['Ph.D.', 'Professor', 'jellenbe@mail.med.upenn.edu'],\
+                    ('Yimei', 'Li'): ['Ph.D.', 'Assistant Professor', 'liy3@email.chop.edu'],\
+                    ('Mingyao','Li'): ['Ph.D.', 'Associate Professor', 'mingyao@mail.med.upenn.edu'],\
                       ('Hongzhe','Li'): ['Ph.D.', 'Professor', 'hongzhe@upenn.edu']
                      }
 """)
