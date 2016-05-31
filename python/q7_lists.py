@@ -1,4 +1,7 @@
 #!/usr/bin/env python
+
+# Use check_q6q7.py to verify that this module works
+
 # Based on materials copyright 2010 Google Inc.
 # Licensed under the Apache License, Version 2.0
 
