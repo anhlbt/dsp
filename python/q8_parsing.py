@@ -7,23 +7,15 @@
 
 # The below skeleton is optional.  You can use it or you can write the script with an approach of your choice.
 
-# Here is a method with Pandas
-
-if __name__ == '__main__':
-
-    import pandas as pd
-
-    data = pd.read_csv('football.csv', sep=',', usecols=[0,5,6], skiprows=[0],
-                        names=['team','goals','goals_against'])
-
-    minpos = (data.goals - data.goals_against).abs().argmin()
-    minteam = data.iloc[minpos]['team']
-
-    print('Pandas Method: The team with the minimum difference between goals for and against is {}.'.format(minteam))
 
 
+# The first answer uses the csv library and a class, since the provided functions mentioned 'self'
+# To execute this answer, import the class:
+# >>> from q8_parsing import football_parser
+# >>> fb = football_parser('football.csv')
 
-# Here is a method using the csv library and a class, since the provided functions mentioned 'self'
+# The above will automatically print the answer. Alternatively: 
+# >>> print('The team with the minimum difference between goals for and against is {}.'.format(fb.minteam))
 
 import csv
 import numpy as np
@@ -71,4 +63,20 @@ class football_parser(object):
         return
 
 
-# fb = football_parser('football.csv')
+
+# Here is a second answer that uses Pandas
+# To execute this answer, run this script from the command line: 
+# >>> ./q8_parsing
+
+if __name__ == '__main__':
+
+    import pandas as pd
+
+    data = pd.read_csv('football.csv', sep=',', usecols=[0,5,6], skiprows=[0],
+                        names=['team','goals','goals_against'])
+
+    minpos = (data.goals - data.goals_against).abs().argmin()
+    minteam = data.iloc[minpos]['team']
+
+    print('Pandas Method: The team with the minimum difference between goals for and against is {}.'.format(minteam))
+
