@@ -22,6 +22,8 @@ How are Python lists and sets similar and different? Give examples of using both
 
 >> Lists and sets are both mutable container types. However, lists are ordered (and, thus, can be indexed), while sets are not ordered. Sets are much better suited to functions associated with "set theory", like union, intersection, and difference.
 
+>> Sets are faster than lists for determining membership because, like dictionaries, they are implemented with an index that is computed based on the value of the item. (This is called a hash table.)
+
 >> Example union and intersection comparison:
 
 ```python
@@ -58,8 +60,6 @@ print(set_union) # set([1, 2, 3, 4, 5, 6])
 set_intersect = set(list_a).intersection(set(list_b)) # {3, 4}
 list_intersect = list(set_intersect)                  # [3, 4]
 ```
-
->> Sets are faster than lists for determining membership because, like dictionaries, they are implemented with an index that is computed based on the value of the item. (This is called a hash table.)
 
 ---
 
