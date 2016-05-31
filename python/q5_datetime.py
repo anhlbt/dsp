@@ -1,3 +1,5 @@
+
+#!/usr/bin/env python
 from datetime import datetime as dt
 
 def calc_days(date_str, date_start, date_stop):
