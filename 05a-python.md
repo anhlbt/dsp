@@ -188,10 +188,14 @@ Place code in this file: [q5_datetime.py](python/q5_datetime.py)
 ###Q6. Strings
 Edit the 7 functions in [q6_strings.py](python/q6_strings.py)
 
+>> Run the file [check_q6q7.py]((python/check_q6q7.py)) to check the results of this module.
+
 ---
 
 ###Q7. Lists
 Edit the 5 functions in [q7_lists.py](python/q7_lists.py)
+
+>> Run the file [check_q6q7.py]((python/check_q6q7.py)) to check the results of this module.
 
 ---
 
