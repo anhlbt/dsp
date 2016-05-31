@@ -1,8 +1,10 @@
 #!/usr/bin/env python
 
-from advanced_python_cleaning import faculty
+from advanced_python_cleaning import faculty, pretty_print_dict
+
 
 print(r"""
+
 Q6.  Create a dictionary in the below format:
 
   faculty_dict = { 'Ellenberg': [\
@@ -15,6 +17,10 @@ Q6.  Create a dictionary in the below format:
                     ['Ph.D.', 'Professor', 'hongzhe@upenn.edu']
                           ]
                  }
+
+
+the first 3 key and value pairs of the dictionary:
+
 """)
 
 
@@ -23,11 +29,12 @@ faculty_dict = dict([(x,y.drop('last_name', axis=1).values.tolist())
                       faculty[['last_name', 'degree', 'title', 'email']]
                       .groupby('last_name')])
 
-print(dict([(key, faculty_dict[key]) for key in faculty_dict.keys()[:3]]))
+print(pretty_print_dict(faculty_dict))
 
 
 
 print(r"""
+
 Q7.  The previous dictionary does not have the best design for keys.  Create a new dictionary with keys as:
 
 
@@ -37,6 +44,9 @@ Q7.  The previous dictionary does not have the best design for keys.  Create a n
                     ('Mingyao','Li'): ['Ph.D.', 'Associate Professor', 'mingyao@mail.med.upenn.edu'],\
                       ('Hongzhe','Li'): ['Ph.D.', 'Professor', 'hongzhe@upenn.edu']
                      }
+
+Print the first 3 key and value pairs of the dictionary:
+
 """)
 
 
@@ -45,13 +55,19 @@ professor_dict = dict([(x,y.drop(['last_name', 'first_name'], axis=1).values.tol
                         faculty[['last_name', 'first_name', 'degree', 'title', 'email']]
                         .groupby(['first_name', 'last_name'])])
 
-print(dict([(key, professor_dict[key]) for key in professor_dict.keys()[:3]]))
+print(pretty_print_dict(professor_dict))
 
 
-print('\nQ8.  It looks like the current dictionary is printing by first name.  Sort by last name and print the first 3 key and value pairs.\n')
+print(r"""
+
+Q8.  It looks like the current dictionary is printing by first name.  Sort by last name and print the first 3 key and value pairs.
+
+""")
 
 
 last_name_sort = lambda x: x[1]
 
-print(dict([(key, professor_dict[key]) 
-            for key in sorted(professor_dict, key=last_name_sort)[:3]]))
+key_list = sorted(professor_dict, key=last_name_sort)
+
+print(pretty_print_dict(professor_dict, key_list=key_list))
+
