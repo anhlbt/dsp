@@ -121,7 +121,7 @@ def get_day_number(day_name):
 is_weekend = lambda day_name: get_day_number(day_name) >= 5
 
 
-my_favorite_days = ['Fridat', 'Saturday', 'Sunday']
+my_favorite_days = ['Friday', 'Saturday', 'Sunday']
 
 ## List comprehension vs map
 print([get_day_abbreviation(x) for x in my_favorite_days]) # ['Fri', 'Sat', 'Sun']
