@@ -41,7 +41,7 @@ for element in list_combined:
     if not(element in list_union):
         list_union.append(element)
 
-print(list_union) # [1, 2, 3, 4, 5, 6]
+print(list_union)                                    # [1, 2, 3, 4, 5, 6]
 
 
 # Determine union with only sets--much easier!
@@ -50,15 +50,18 @@ set_b = {3, 4, 5, 6}
 
 set_union = set_a.union(set_b)
 
-print(set_union) # set([1, 2, 3, 4, 5, 6])
+print(set_union)                                     # set([1, 2, 3, 4, 5, 6])
 
-# Items can be converted between lists and sets:
+# Note that items can be converted
+# between lists and sets whenever necessary:
 # list(set_union)
-# set(list_union)
+# set(list_union))
 
 # Example using both--determine intersection
-set_intersect = set(list_a).intersection(set(list_b)) # {3, 4}
-list_intersect = list(set_intersect)                  # [3, 4]
+set_intersect = set(list_a).intersection(set(list_b)) 
+print(set_intersect)                                  # set([3, 4])
+list_intersect = list(set_intersect)                  
+print(list_intersect)                                 # [3, 4]
 ```
 
 ---
