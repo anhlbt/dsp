@@ -110,14 +110,15 @@ Explain list comprehensions. Give examples and show equivalents with `map` and `
 ## Lambda functions for filtering and mapping
 get_day_abbreviation = lambda x: x[:3]
 
-def get_day_number(day_name):
-    day_mapper = {'Mon' : 0,
-                  'Tue' : 1,
-                  'Wed' : 2,
-                  'Thu' : 3,
-                  'Fri' : 4,
-                  'Sat' : 5,
-                  'Sun' : 6}
+day_mapper = {'Mon' : 0,
+              'Tue' : 1,
+              'Wed' : 2,
+              'Thu' : 3,
+              'Fri' : 4,
+              'Sat' : 5,
+              'Sun' : 6}
+
+def get_day_number(day_name, day_mapper=day_mapper):
 
     return day_mapper[get_day_abbreviation(day_name)]
 
@@ -136,9 +137,17 @@ print([x for x in my_favorite_days if is_weekend(x)])      # ['Saturday', 'Sunda
 
 print(filter(is_weekend, my_favorite_days))                # ['Saturday', 'Sunday']
 
-```
+## Set comprehension example
+print({day 
+          for day in my_favorite_days 
+          if is_weekend(day)})                             # set(['Sunday', 'Saturday'])
 
-# -[ ] TODO add set comprehensions and dictionary comprehensions
+## Dictionary comprehension example
+print(dict((key,val) 
+          for key,val in day_mapper.iteritems() 
+          if is_weekend(key)))                             # {'Sun': 6, 'Sat': 5}
+
+```
 
 ---
 
