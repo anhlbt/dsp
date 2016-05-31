@@ -104,7 +104,7 @@ Explain list comprehensions. Give examples and show equivalents with `map` and `
 
 >> List comprehensions iterate through each element of an iterable data structure (list, tuple, dict, etc.) and perform a specified action on the element. As the name implies, they return a list. List comprehensions are effectively a very concise substitute for a `for` loop. The addition of `if` and `else` to a list comprehension allows alternative logic to be performed on the elements. I think list comprehensions are fun to write and they are often faster than an actual loop. However, they can be more difficult to read and debug.
 
->> List comprehensions can serve the same purpose as the `map` function. And with the addition of `if`/`else` logic (or a function that implements this logic), they can also serve a similar purpose to the `filter` function.
+>> List comprehensions can serve the same purpose as the `map` function. And with the addition of `if`/`else` logic (or a function that implements this logic), they can also serve a similar purpose as the `filter` function.
 
 
 ```python
