@@ -17,8 +17,9 @@ for mod_name, mod in test_mod_dict.iteritems():
     # Get a list of all functions defined in the module
     func_list = [func for name, func in getmembers(mod) if isfunction(func)]
 
-    # Scrape the tests and answers for each function from the function's docstring
     for func in func_list:
+
+        # Scrape the tests and answers for each function from the function's docstring
         test_answer_list = re.findall(r""">>>\s*(.+)\s*\n\s*(.+)\s*""", func.__doc__)
         
         # Evaluate each test to ensure it produces the correct answer
