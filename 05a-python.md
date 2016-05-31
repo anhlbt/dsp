@@ -36,8 +36,8 @@ list_combined.extend(list_b)
 
 list_union = list()
 for element in list_combined:
-	if not(element in list_union):
-		list_union.append(element)
+    if not(element in list_union):
+        list_union.append(element)
 
 print(list_union) # [1, 2, 3, 4, 5, 6]
 
@@ -108,15 +108,15 @@ Explain list comprehensions. Give examples and show equivalents with `map` and `
 get_day_abbreviation = lambda x: x[:3]
 
 def get_day_number(day_name):
-	day_mapper = {'Mon' : 0,
-	              'Tue' : 1,
-	              'Wed' : 2,
-	              'Thu' : 3,
-	              'Fri' : 4,
-	              'Sat' : 5,
-	              'Sun' : 6}
+    day_mapper = {'Mon' : 0,
+                  'Tue' : 1,
+                  'Wed' : 2,
+                  'Thu' : 3,
+                  'Fri' : 4,
+                  'Sat' : 5,
+                  'Sun' : 6}
 
-	return day_mapper[get_day_abbreviation(day_name)]
+    return day_mapper[get_day_abbreviation(day_name)]
 
 is_weekend = lambda day_name: get_day_number(day_name) >= 5
 
