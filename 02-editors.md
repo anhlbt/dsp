@@ -44,6 +44,7 @@ Popular editors and IDEs include:
  * Atom
  * Spyder
  * PyCharm
+ * [Rodeo](http://blog.yhat.com/posts/introducing-rodeo.html)
 
 If you choose Emacs or vim, you will have essentially the same editor experience across graphical and non-graphical environments, which is nice. It's also nice to be able to work without ever having to use a mouse. Emacs and vim have somewhat steep learning curves, but they give you the ability to customize your environment quite a lot to make it exactly what you want.
 
