@@ -79,7 +79,7 @@ plt.show()
 ```
 
 
-![png](output_6_0.png)
+![](4-2-random_dist/output_6_0.png)
 
 
 
@@ -95,13 +95,9 @@ plt.show()
 ```
 
 
-![png](output_8_0.png)
+![](4-2-random_dist/output_8_0.png)
 
 
-
-```python
-
-```
 
 
 ```python

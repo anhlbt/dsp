@@ -44,27 +44,27 @@ for fil in file_list:
         # Strip spaces before any output markdown tables
         md_str = re.sub(r"""(?<=\n)    \|""", '|', md_str)
 
-        
-        # Write the markdown file
-        print('     Writing markdown file \'{}\''.format(md_file))
-
-        with open(md_file, 'w') as fh:
-            fh.write(md_str)
-
-
         # Add directory and remove 'png' label from figure references
         if len(md_figs.keys()) > 0:
-            print('     Writing images to directory \'{}\''.format(fil))
 
             if not os.path.exists(fil):
                 os.mkdir(fil)
 
             md_str = re.sub(r"""\[png\]\(""", r'[]({}/'.format(fil), md_str)
 
-        # Write the figures
-        for key in md_figs.keys():
-            with open('{}/{}'.format(fil, key), 'wb') as fh:
-                fh.write(md_figs[key])
+            print('     Writing images to directory \'{}\''.format(fil))
+            
+            # Write the figures
+            for key in md_figs.keys():
+                with open('{}/{}'.format(fil, key), 'wb') as fh:
+                    fh.write(md_figs[key])
+
+
+        # Write the markdown file
+        print('     Writing markdown file \'{}\''.format(md_file))
+
+        with open(md_file, 'w') as fh:
+            fh.write(md_str)
 
         print('     Done.\n')
 
