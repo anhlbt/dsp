@@ -8,17 +8,17 @@ This markdown file has been converted from a Jupyter notebook using [convert_not
 # Answer
 
 
-```python
-print('Cohen\'s d of birthweight for firstborn vs. other children is {:.3f}.'.format(cohens_d))
 
-print('This difference between the two means is less than 0.1 of the pooled standard deviation. This is a small effect size.')
-```
 
-    Cohen's d of birthweight for firstborn vs. other children is 0.089.
-    This difference between the two means is less than 0.1 of the pooled standard deviation. This is a small effect size.
+
+Cohen's d of birthweight for firstborn vs. other children is 0.089.
+
+
+This difference between the two means is less than 0.1 of the pooled standard deviation. This is a small effect size.
 
 
 # Code
+
 
 
 ```python
@@ -29,16 +29,20 @@ from tabulate import tabulate
 from load_ThinkStats import load_FemPreg
 ```
 
-Load the 2002 female pregnancy results. This uses a custom library I wrote called `load_ThinkStats`.
+
+Load the 2002 female pregnancy results. This uses a custom library I wrote called [`load_ThinkStats`](load_ThinkStats.py).
+
 
 
 ```python
 df = load_FemPreg(True)
 ```
 
+
 ## Clean and bin the data into first born vs others
 
 Drop any invalid (`na`) data and separate the birth data into two groups (first born and all others).
+
 
 
 ```python
@@ -48,16 +52,21 @@ df['birthord'] = df.birthord.astype(np.int)
 df['birthord_bin'] = pd.cut(df.birthord, [0,1, df.birthord.max()])
 ```
 
+
 Print the bin for each birth order to ensure the groups are as expected.
 
 
+
 ```python
-print(tabulate(df[['birthord_bin','birthord']].drop_duplicates().set_index('birthord_bin'), 
+print(tabulate(df[['birthord_bin','birthord']]
+                 .drop_duplicates()
+                 .set_index('birthord_bin'), 
                headers=['birthord'],
                tablefmt='pipe',
                floatfmt=".3f")
       )
 ```
+
 
 |         |   birthord |
 |:--------|-----------:|
@@ -78,6 +87,7 @@ print(tabulate(df[['birthord_bin','birthord']].drop_duplicates().set_index('birt
 For each of the two bins (first born and all others), calculate the mean and variance birthweight. Also determine the number of births in each of the two groups.
 
 
+
 ```python
 stats = ( df[['birthord_bin', 'totalwgt_lb']]
           .groupby('birthord_bin')
@@ -85,7 +95,9 @@ stats = ( df[['birthord_bin', 'totalwgt_lb']]
          )
 ```
 
+
 Calculate the normalized counts (i.e. percent of total).
+
 
 
 ```python
@@ -94,16 +106,19 @@ stats[('totalwgt_lb','count_norm')] = ( stats[('totalwgt_lb','count')]
                                        )
 ```
 
+
 View the statistics table.
+
 
 
 ```python
 print(tabulate(stats,
-      headers=[x[1] for x in stats.columns.tolist()],
-      tablefmt='pipe',
-      floatfmt=".3f")
+               headers=[x[1] for x in stats.columns.tolist()],
+               tablefmt='pipe',
+               floatfmt=".3f")
      )
 ```
+
 
 |         |   mean |   var |    count |   count_norm |
 |:--------|-------:|------:|---------:|-------------:|
@@ -116,13 +131,20 @@ print(tabulate(stats,
 Use the statistics table to calculate Cohen's d for birthweight for firstborn vs. all other babies.
 
 
+
 ```python
-pooled_var = (stats[('totalwgt_lb','var')] * stats[('totalwgt_lb','count_norm')]).sum()
+pooled_var = ( (stats[('totalwgt_lb','var')] * 
+                stats[('totalwgt_lb','count_norm')]).sum()
+              )
 
-cohens_d = (stats[('totalwgt_lb','mean')].diff().dropna() / np.sqrt(pooled_var)).values[0]
+cohens_d = ( (stats[('totalwgt_lb','mean')].diff().dropna() / 
+              np.sqrt(pooled_var)).values[0]
+            )
 
-print('Cohen\'s d of birthweight for firstborn vs. other children is {:.3f}.'.format(cohens_d))
+print('Cohen\'s d of birthweight for firstborn vs. other children is {:.3f}.'
+      .format(cohens_d))
 ```
 
-    Cohen's d of birthweight for firstborn vs. other children is 0.089.
+
+Cohen's d of birthweight for firstborn vs. other children is 0.089.
 

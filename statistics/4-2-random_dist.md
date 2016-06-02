@@ -14,14 +14,17 @@ This markdown file has been converted from a Jupyter notebook using [convert_not
 # Answer
 
 
+
 ```python
 print('ADD ANSWER AND MAYBE A PLOT')
 ```
 
-    ADD ANSWER AND MAYBE A PLOT
+
+ADD ANSWER AND MAYBE A PLOT
 
 
 # Code
+
 
 
 ```python
@@ -35,6 +38,8 @@ import seaborn as sns
 %matplotlib inline
 %config InlineBackend.close_figures = False
 ```
+
+
 
 
 ```python
@@ -60,7 +65,9 @@ def generate_pdf_cdf_pandas(samples, decimals=4):
     return sample_df
 ```
 
+
 For good measure, here is a version of the above function using only numpy.
+
 
 
 ```python
@@ -83,6 +90,8 @@ def generate_pdf_cdf(samples, decimals=4):
 ```
 
 
+
+
 ```python
 nsamples = 5000
 
@@ -93,13 +102,17 @@ distribution_42 = np.random.normal(loc=0.0, scale=1.0, size=nsamples)
 ```
 
 
+
+
 ```python
 stats.probplot(distribution_42, dist='norm', plot=plt)
 plt.show()
 ```
 
 
+
 ![](4-2-random_dist/output_8_0.png)
+
 
 
 
@@ -109,13 +122,17 @@ distribution_84 = np.random.normal(loc=0.0, scale=1.0, size=nsamples)
 ```
 
 
+
+
 ```python
 stats.probplot(distribution_84, dist='norm', plot=plt)
 plt.show()
 ```
 
 
+
 ![](4-2-random_dist/output_10_0.png)
+
 
 
 
@@ -123,3 +140,4 @@ plt.show()
 xdata_42 = np.linspace(df_42.samples.min(), df_42.samples.max(), df_42.shape[0])
 compare_42 = stats.norm.cdf(xdata_42, loc=0.0, scale=1.0)
 ```
+

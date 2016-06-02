@@ -10,14 +10,17 @@ This markdown file has been converted from a Jupyter notebook using [convert_not
 # Answer
 
 
+
 ```python
 print('ANSWER GOES HERE.')
 ```
 
-    ANSWER GOES HERE.
+
+ANSWER GOES HERE.
 
 
 # Code
+
 
 
 ```python
@@ -33,3 +36,4 @@ from load_ThinkStats import load_FemPreg
 %matplotlib inline
 # %config InlineBackend.close_figures = False
 ```
+

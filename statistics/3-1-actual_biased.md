@@ -10,18 +10,15 @@ This markdown file has been converted from a Jupyter notebook using [convert_not
 # Answer
 
 
-```python
-print('The unbiased and biased mean number of children is {:.1f} and {:.1f}, respectively.'
-      .format(household_kids_means.unbiased.values[0], household_kids_means.biased.values[0]))
-print(household_kids_means_md)
 
-plt.show()
-```
 
-    The unbiased and biased mean number of children is 1.0 and 2.4, respectively.
+
+The unbiased and biased mean number of children is 1.0 and 2.4, respectively.
+
 |      |   unbiased |   biased |
 |:-----|-----------:|---------:|
 | mean |      1.024 |    2.404 |
+
 
 
 
@@ -29,6 +26,7 @@ plt.show()
 
 
 # Code
+
 
 
 ```python
@@ -45,16 +43,20 @@ from load_ThinkStats import load_survey_data
 %config InlineBackend.close_figures = False
 ```
 
-Load the `numkdhh` column from the 2002 female response survey data. This uses a custom library I wrote called `load_ThinkStats`.
+
+This uses a custom library I wrote called [`load_ThinkStats`](load_ThinkStats.py).
+
 
 
 ```python
 df = load_survey_data('2002FemResp', columns=['numkdhh'])
 ```
 
+
 ## Calculate unbiased and biased distributions
 
 Sum the number of households with varying number of children to determine the distribution. Then compute the biased distribution and normalize everything.
+
 
 
 ```python
@@ -74,7 +76,9 @@ household_kids['biased'] = household_kids.unbiased * household_kids.num_kids
 household_kids[['unbiased','biased']] /= household_kids[['unbiased','biased']].sum()
 ```
 
+
 Print the table in markdown syntax since this worksheet is converted to markdown.
+
 
 
 ```python
@@ -84,6 +88,7 @@ print(tabulate(household_kids.set_index('num_kids'),
                floatfmt=".3f")
       )
 ```
+
 
 |   num_kids |   unbiased |   biased |
 |-----------:|-----------:|---------:|
@@ -100,6 +105,7 @@ print(tabulate(household_kids.set_index('num_kids'),
 Calculate the average number of children for both the unbiased and biased distributions.
 
 
+
 ```python
 household_kids_means = ( household_kids[['unbiased','biased']]
                          .mul(household_kids.num_kids, axis=0)
@@ -111,6 +117,8 @@ household_kids_means = ( household_kids[['unbiased','biased']]
 ```
 
 
+
+
 ```python
 household_kids_means_md = tabulate(household_kids_means,
                                    headers=list(household_kids_means.columns),
@@ -120,6 +128,7 @@ household_kids_means_md = tabulate(household_kids_means,
 print(household_kids_means_md)
 ```
 
+
 |      |   unbiased |   biased |
 |:-----|-----------:|---------:|
 | mean |      1.024 |    2.404 |
@@ -128,6 +137,7 @@ print(household_kids_means_md)
 ## Visualize PMFs
 
 Plot the PMFs for the unbiased and biased distributions.
+
 
 
 ```python
@@ -147,6 +157,8 @@ household_kids = ( pd.concat([household_kids, pad_values])
                    .reset_index(drop=True)
                   )
 ```
+
+
 
 
 ```python
@@ -169,10 +181,12 @@ ax = ( household_kids[['biased','unbiased']]
       )
 
 ax.fill_between(household_kids.num_kids, household_kids.biased, 
-                interpolate=False, step='post', color='blue', alpha=0.25, zorder=-1)
+                interpolate=False, step='post', 
+                color='blue', alpha=0.25, zorder=-1)
 
 ax.fill_between(household_kids.num_kids, household_kids.unbiased, 
-                interpolate=False, step='post', color='green', alpha=0.25, zorder=-1)
+                interpolate=False, step='post', 
+                color='green', alpha=0.25, zorder=-1)
 
 ax.set_xlabel('Number of Children')
 ax.set_ylabel('Probability')
@@ -182,6 +196,7 @@ xticks = ax.get_xticks()[1:-2].astype(np.int)
 _ = ax.set_xticks(xticks+0.5)
 _ = ax.set_xticklabels(xticks)
 ```
+
 
 
 ![](3-1-actual_biased/output_15_0.png)
