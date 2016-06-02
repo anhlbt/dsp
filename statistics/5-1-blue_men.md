@@ -3,9 +3,9 @@
 
 This is a classic example of hypothesis testing using the normal distribution.  The effect size used here is the Z-statistic. 
 
-In the BRFSS (see The Lognormal Distribution), the distribution of heights is roughly normal with parameters $\mu$ = 178 cm and $\sigma$ = 7.7 cm for men, and $\mu$ = 163 cm and $\sigma$ = 7.3 cm for women.
+In the BRFSS (see The Lognormal Distribution), the distribution of heights is roughly normal with parameters `mu` = 178 cm and `sigma` = 7.7 cm for men, and `mu` = 163 cm and `sigma` = 7.3 cm for women.
 
-In order to join Blue Man Group, you have to be male and between 5′10″ and 6′1″ tall. What percentage of the US male population is in this range? Hint: use scipy.stats.norm.cdf.
+In order to join Blue Man Group, you have to be male and between 5′10″ and 6′1″ tall. What percentage of the US male population is in this range? Hint: use `scipy.stats.norm.cdf`.
 
 # Answer
 
@@ -89,7 +89,7 @@ print('The two percentiles are {:.2f} and {:.2f}, and their difference is {:.2f}
 
 ## Method 2
 
-Use `scipy.stats.norm.cdf` to directly calculate the percentile difference by supplying $\mu$ and $\sigma$ to the function.
+Use `scipy.stats.norm.cdf` to directly calculate the percentile difference by supplying `mu` and `sigma` to the function.
 
 
 ```python
