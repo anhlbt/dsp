@@ -44,6 +44,9 @@ for fil in file_list:
         # Strip spaces before any output markdown tables
         md_str = re.sub(r"""(?<=\n)    \|""", '|', md_str)
 
+        # Strip empty code blocks
+        md_str = re.sub(r"""```.+\n\s?```\n\n\n""", '', md_str)
+
         # Add directory and remove 'png' label from figure references
         if len(md_figs.keys()) > 0:
 
