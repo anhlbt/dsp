@@ -63,6 +63,7 @@ This questions asks you to examine the function that produces random numbers.  I
 This is a classic example of hypothesis testing using the normal distribution.  The effect size used here is the Z-statistic. 
 
 
+# - [ ] TODO: ANSWER THESE
 
 ###Q5. Bayesian (Elvis Presley twin) 
 
