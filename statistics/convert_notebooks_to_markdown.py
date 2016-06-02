@@ -11,7 +11,6 @@ import nbconvert
 c = Config()
 c.Exporter.template_path = [ '.' ]
 c.Exporter.template_file = 'MLG_hide_input_output_markdown.tpl'
-# c.HTMLExporter.preprocessors = ['nbconvert.preprocessors.ExtractOutputPreprocessor']
 
 # Base file names of the files to convert
 
@@ -46,12 +45,6 @@ for fil in file_list:
 
         # Get the base64 encoded images
         md_figs = md_res['outputs']
-
-        # Strip spaces before any output markdown tables
-        # md_str = re.sub(r"""(?<=\n)    \|""", '|', md_str)
-
-        # Strip empty code blocks
-        # md_str = re.sub(r"""```.+\n\s?```\n\n\n""", '', md_str)
 
         # Add directory and remove 'png' label from figure references
         if len(md_figs.keys()) > 0:
