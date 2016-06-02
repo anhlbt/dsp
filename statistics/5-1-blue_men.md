@@ -7,6 +7,10 @@ In the BRFSS (see The Lognormal Distribution), the distribution of heights is ro
 
 In order to join Blue Man Group, you have to be male and between 5′10″ and 6′1″ tall. What percentage of the US male population is in this range? Hint: use `scipy.stats.norm.cdf`.
 
+This markdown file has been converted from a Jupyter notebook using [convert_notebooks_to_markdown.py](./convert_notebooks_to_markdown.py).
+
+# - [ ] Finish this question
+
 # Answer
 
 

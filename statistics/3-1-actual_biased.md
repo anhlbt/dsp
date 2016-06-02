@@ -5,20 +5,50 @@ Use the NSFG respondent variable NUMKDHH to construct the actual distribution fo
 
 Plot the actual and biased distributions, and compute their means.
 
+This markdown file has been converted from a Jupyter notebook using [convert_notebooks_to_markdown.py](./convert_notebooks_to_markdown.py).
+
+# Answer
+
+
+```python
+print('The unbiased and biased mean number of children is {:.1f} and {:.1f}, respectively.'
+      .format(household_kids_means.unbiased.values[0], household_kids_means.biased.values[0]))
+print(household_kids_means_md)
+
+plt.show()
+```
+
+    The unbiased and biased mean number of children is 1.0 and 2.4, respectively.
+|      |   unbiased |   biased |
+|:-----|-----------:|---------:|
+| mean |      1.024 |    2.404 |
+
+
+
+![](3-1-actual_biased/output_1_1.png)
+
+
+# Code
+
 
 ```python
 import pandas as pd
 import numpy as np
+
+import matplotlib.pyplot as plt
 import seaborn as sns
+
 from tabulate import tabulate
+from load_ThinkStats import load_survey_data
+
 %matplotlib inline
+%config InlineBackend.close_figures = False
 ```
 
 Load the `numkdhh` column from the 2002 female response survey data. This uses a custom library I wrote called `load_ThinkStats`.
 
 
 ```python
-from load_ThinkStats import load_survey_data
 df = load_survey_data('2002FemResp', columns=['numkdhh'])
 ```
 
@@ -82,11 +112,12 @@ household_kids_means = ( household_kids[['unbiased','biased']]
 
 
 ```python
-print(tabulate(household_kids_means,
-               headers=list(household_kids_means.columns),
-               tablefmt='pipe',
-               floatfmt=".3f")
-      )
+household_kids_means_md = tabulate(household_kids_means,
+                                   headers=list(household_kids_means.columns),
+                                   tablefmt='pipe',
+                                   floatfmt=".3f")
+
+print(household_kids_means_md)
 ```
 
 |      |   unbiased |   biased |
@@ -101,6 +132,7 @@ Plot the PMFs for the unbiased and biased distributions.
 
 ```python
 # First pad beginning and end with zero-value data for better step-plotting
+
 klim = [household_kids.num_kids.min(), 
         household_kids.num_kids.max()]
 
@@ -122,13 +154,25 @@ household_kids = ( pd.concat([household_kids, pad_values])
 sns.set_context('talk')
 sns.set_style('white')
 
+fig = plt.figure()
+fig.set_size_inches(7, 5)
+
+ax = plt.axes()
+
 ax = ( household_kids[['biased','unbiased']]
          .plot(kind='line', 
                drawstyle='steps',
                lw=2.0,
                xlim=(klim[0]-0.25, klim[1]+1.25),
-               figsize=(7,5))
+               figsize=(7,5),
+               ax=ax)
       )
+
+ax.fill_between(household_kids.num_kids, household_kids.biased, 
+                interpolate=False, step='post', color='blue', alpha=0.25, zorder=-1)
+
+ax.fill_between(household_kids.num_kids, household_kids.unbiased, 
+                interpolate=False, step='post', color='green', alpha=0.25, zorder=-1)
 
 ax.set_xlabel('Number of Children')
 ax.set_ylabel('Probability')
@@ -140,5 +184,5 @@ _ = ax.set_xticklabels(xticks)
 ```
 
 
-![](3-1-actual_biased/output_13_0.png)
+![](3-1-actual_biased/output_15_0.png)
 

@@ -3,24 +3,42 @@
 
 Using the variable totalwgt_lb, investigate whether first babies are lighter or heavier than others. Compute Cohen’s d to quantify the difference between the groups. How does it compare to the difference in pregnancy length?
 
+This markdown file has been converted from a Jupyter notebook using [convert_notebooks_to_markdown.py](./convert_notebooks_to_markdown.py).
+
+# Answer
+
+
+```python
+print('Cohen\'s d of birthweight for firstborn vs. other children is {:.3f}.'.format(cohens_d))
+
+print('This difference between the two means is less than 0.1 of the pooled standard deviation. This is a small effect size.')
+```
+
+    Cohen's d of birthweight for firstborn vs. other children is 0.089.
+    This difference between the two means is less than 0.1 of the pooled standard deviation. This is a small effect size.
+
+
+# Code
+
 
 ```python
 import pandas as pd
 import numpy as np
+
 from tabulate import tabulate
+from load_ThinkStats import load_FemPreg
 ```
 
 Load the 2002 female pregnancy results. This uses a custom library I wrote called `load_ThinkStats`.
 
 
 ```python
-from load_ThinkStats import load_FemPreg
 df = load_FemPreg(True)
 ```
 
 ## Clean and bin the data into first born vs others
 
-Drop any invalid (na) data and separate the birthdata into two groups (first born and all others).
+Drop any invalid (`na`) data and separate the birth data into two groups (first born and all others).
 
 
 ```python
@@ -102,10 +120,9 @@ Use the statistics table to calculate Cohen's d for birthweight for firstborn vs
 pooled_var = (stats[('totalwgt_lb','var')] * stats[('totalwgt_lb','count_norm')]).sum()
 
 cohens_d = (stats[('totalwgt_lb','mean')].diff().dropna() / np.sqrt(pooled_var)).values[0]
-print(cohens_d)
 
-# COMPARE TO 0.029 FOR PREGNANCY LENGTH
+print('Cohen\'s d of birthweight for firstborn vs. other children is {:.3f}.'.format(cohens_d))
 ```
 
-    0.088672363332
+    Cohen's d of birthweight for firstborn vs. other children is 0.089.
 
