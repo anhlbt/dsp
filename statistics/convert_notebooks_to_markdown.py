@@ -1,11 +1,17 @@
 #!/usr/bin/env python
 
 # Convert all Jupyter notebooks to markdown files
-import nbconvert
 import os
 import re
 import sys
+from traitlets.config import Config
+import nbconvert
 
+# Set path to custom markdown export template
+c = Config()
+c.Exporter.template_path = [ '.' ]
+c.Exporter.template_file = 'MLG_hide_input_output_markdown.tpl'
+# c.HTMLExporter.preprocessors = ['nbconvert.preprocessors.ExtractOutputPreprocessor']
 
 # Base file names of the files to convert
 
@@ -33,7 +39,7 @@ for fil in file_list:
         print('Found notebook \'{}\'...'.format(nb_file))
         
         # Read the notebook and resources
-        md_str, md_res = nbconvert.export_markdown(nb_file)
+        md_str, md_res = nbconvert.export_markdown(nb_file, config=c)
 
         if sys.version_info[0] == 2:
             md_str = md_str.encode('utf8')
@@ -42,10 +48,10 @@ for fil in file_list:
         md_figs = md_res['outputs']
 
         # Strip spaces before any output markdown tables
-        md_str = re.sub(r"""(?<=\n)    \|""", '|', md_str)
+        # md_str = re.sub(r"""(?<=\n)    \|""", '|', md_str)
 
         # Strip empty code blocks
-        md_str = re.sub(r"""```.+\n\s?```\n\n\n""", '', md_str)
+        # md_str = re.sub(r"""```.+\n\s?```\n\n\n""", '', md_str)
 
         # Add directory and remove 'png' label from figure references
         if len(md_figs.keys()) > 0:
