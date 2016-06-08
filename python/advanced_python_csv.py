@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+from __future__ import print_function
 
 from advanced_python_cleaning import faculty, pretty_print_list
 

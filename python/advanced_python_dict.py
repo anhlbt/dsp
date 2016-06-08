@@ -1,6 +1,8 @@
 #!/usr/bin/env python
+from __future__ import print_function
 
 from advanced_python_cleaning import faculty, pretty_print_dict
+import numpy as np
 
 
 print(r"""
@@ -19,17 +21,30 @@ Q6.  Create a dictionary in the below format:
                  }
 
 
-the first 3 key and value pairs of the dictionary:
+Print the first 3 key and value pairs of the dictionary:
 
 """)
 
+# Dictionary comprehension method
+# faculty_dict = { x:y.values.tolist()
+#                    for x,y in 
+#                    faculty[['last_name', 'degree', 'title', 'email']]
+#                    .set_index('last_name')
+#                    .groupby(level=0)
+#                 }
 
-faculty_dict = dict([(x,y.drop('last_name', axis=1).values.tolist())
-                      for x,y in 
-                      faculty[['last_name', 'degree', 'title', 'email']]
-                      .groupby('last_name')])
+# Pandas-esque method
+faculty_dict = ( faculty
+                 .set_index('last_name')
+                 .groupby(level=0)
+                 .apply(lambda x: x[['degree', 'title', 'email']]
+                                  .values
+                                  .tolist())
+                 .to_dict()
+               )
 
 print(pretty_print_dict(faculty_dict))
+
 
 
 
@@ -49,13 +64,27 @@ Print the first 3 key and value pairs of the dictionary:
 
 """)
 
+# Dictionary comprehension method
+# professor_dict = { x:y.squeeze().tolist()
+#                      for x,y in 
+#                      faculty[['last_name', 'first_name', 'degree', 'title', 'email']]
+#                      .set_index(['first_name','last_name'])
+#                      .groupby(level=[0,1])
+#                   }
 
-professor_dict = dict([(x,y.drop(['last_name', 'first_name'], axis=1).values.tolist())
-                        for x,y in 
-                        faculty[['last_name', 'first_name', 'degree', 'title', 'email']]
-                        .groupby(['first_name', 'last_name'])])
+# Pandas-esque method
+professor_dict = ( faculty
+                   .set_index(['first_name', 'last_name'])
+                   .groupby(level=[0,1])
+                   .apply(lambda x: x[['degree', 'title', 'email']]
+                                    .squeeze()
+                                    .tolist())
+                   .to_dict()
+                 )
 
 print(pretty_print_dict(professor_dict))
+
+
 
 
 print(r"""

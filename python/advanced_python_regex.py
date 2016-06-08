@@ -1,9 +1,11 @@
 #!/usr/bin/env python
+from __future__ import print_function
 
 import pandas as pd
 from advanced_python_cleaning import faculty, pretty_print_list
 
 try:
+    # Print the tables with markdown syntax if possible
     from tabulate import tabulate
 except:
     use_tabulate = False
@@ -41,7 +43,7 @@ print('>> {}\n'.format(degree_table))
 print('\nQ2. Find how many different titles there are, and their frequencies.\n')
 
 faculty_titles = faculty.title.value_counts()
-faculty_titles = faculty_titles.to_frame().rename(columns={0:'count'})
+faculty_titles = faculty_titles.to_frame().rename(columns={'title':'count'})
 
 print('>> There are {} different faculty titles.\n'.format(faculty.title.nunique()))
 

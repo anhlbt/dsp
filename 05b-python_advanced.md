@@ -37,7 +37,7 @@ This data is available in this file:  [faculty.csv](python/faculty.csv)
 
 >> There are 3 different faculty titles.
 
->> |                     |   title |
+>> |                     |   count |
 |:--------------------|--------:|
 | Professor           |      13 |
 | Associate Professor |      12 |
@@ -150,20 +150,23 @@ professor_dict = {('Susan', 'Ellenberg'): ['Ph.D.', 'Professor', 'sellenbe@upenn
 
 Print the first 3 key and value pairs of the dictionary:
 
->> {('Yimei', 'Li')         : [['Ph.D.', 'Assistant Professor', 'liy3@email.chop.edu']],
-  ('Hongzhe', 'Li')       : [['Ph.D.', 'Professor', 'hongzhe@upenn.edu']],
-  ('Knashawn', 'Morales') : [['Sc.D.', 'Associate Professor', 'knashawn@mail.med.upenn.edu']]}
+>> {('Yimei', 'Li')         : ['Ph.D.', 'Assistant Professor', 'liy3@email.chop.edu'],
+ ('Hongzhe', 'Li')       : ['Ph.D.', 'Professor', 'hongzhe@upenn.edu'],
+ ('Knashawn', 'Morales') : ['Sc.D.', 'Associate Professor', 'knashawn@mail.med.upenn.edu']}
 
->> **NOTE**: my dictionary is not printing by first name, but this is likely due to differences in the dictionary creation method. I'm converting from a Pandas dataframe.
+>> **NOTE**: my dictionary is not printing as sorted by first name, but this is likely due to differences in the dictionary creation method since dictionary keys aren't inherently sorted anyway. I'm creating my dictionary by converting from a Pandas dataframe.
+
+
 
 ####Q8.  It looks like the current dictionary is printing by first name.  Print out the dictionary key value pairs based on alphabetical orders of the last name of the professors
 
->> {('Scarlett', 'Bellamy') : [['Sc.D.', 'Associate Professor', 'bellamys@mail.med.upenn.edu']],
-  ('Warren', 'Bilker')    : [['Ph.D.', 'Professor', 'warren@upenn.edu']],
-  ('Matthew', 'Bryan')    : [['Ph.D.', 'Assistant Professor', 'bryanma@upenn.edu']]}
+>> {('Scarlett', 'Bellamy') : ['Sc.D.', 'Associate Professor', 'bellamys@mail.med.upenn.edu'],
+ ('Warren', 'Bilker')    : ['Ph.D.', 'Professor', 'warren@upenn.edu'],
+ ('Matthew', 'Bryan')    : ['Ph.D.', 'Assistant Professor', 'bryanma@upenn.edu']}
 
 
 Place your code in this file: [advanced_python_dict.py](python/advanced_python_dict.py)
+
 
 --- 
 
