@@ -34,9 +34,13 @@ def get_degree(name):
     # Extract the degree from the table
     mask = table.Name.str.contains(name)
 
+    if sum(mask) == 0:
+        warnings.warn('Warning: No matches were found, returning empty string.')
+        return ''
+
     if sum(mask) > 1:
         warnings.warn('Warning: More than one name match was found, returning first match.')
-
+        
     degree = ( table.Name.loc[mask]
                .str
                .extract(r""".+\s*,\s*(.+)\s*""", 
