@@ -42,10 +42,16 @@ print('>> {}\n'.format(degree_table))
 
 print('\nQ2. Find how many different titles there are, and their frequencies.\n')
 
-faculty_titles = faculty.title.value_counts()
-faculty_titles = faculty_titles.to_frame().rename(columns={'title':'count'})
+num_unique_titles = faculty.title.nunique()
 
-print('>> There are {} different faculty titles.\n'.format(faculty.title.nunique()))
+faculty_titles = ( faculty
+                   .title
+                   .value_counts()
+                   .to_frame()
+                   .rename(columns={'title':'count'})
+                 )
+
+print('>> There are {} different faculty titles.\n'.format(num_unique_titles))
 
 if use_tabulate:
     title_table = tabulate(faculty_titles, 
@@ -62,7 +68,9 @@ print('>> {}\n'.format(title_table))
 
 print('\nQ3. Search for email addresses and put them in a list. Print the list of email addresses.\n')
 
-print('>> {}\n'.format(pretty_print_list(list(faculty.email))))
+email_list_str = pretty_print_list(faculty.email.tolist())
+
+print('>> {}\n'.format(email_list_str))
 
 
 
@@ -70,7 +78,11 @@ print('>> {}\n'.format(pretty_print_list(list(faculty.email))))
 
 print('\nQ4. Find how many different email domains there are.  Print the list of unique email domains.\n')
 
-print('>> There are {} different email domains.\n'.format(faculty.email_domain.nunique()))
+num_unique_domains = faculty.email_domain.nunique()
 
-print('>> {}\n'.format(pretty_print_list(faculty.email_domain.unique())))
+unique_domains_str = pretty_print_list(faculty.email_domain.unique())
+
+print('>> There are {} different email domains.\n'.format(num_unique_domains))
+
+print('>> {}\n'.format(unique_domains_str))
 
