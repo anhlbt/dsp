@@ -24,7 +24,11 @@ degrees = pd.Series(sum(degrees, []))
 
 print('>> There are {} different degrees.\n'.format(degrees.nunique()))
 
-degrees = degrees.value_counts().to_frame().rename(columns={0:'count'})
+degrees = ( degrees
+            .value_counts()
+            .to_frame()
+            .rename(columns={0:'count'})
+          )
 
 if use_tabulate:
     degree_table = tabulate(degrees, 
