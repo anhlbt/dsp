@@ -2,6 +2,7 @@
 
 # Convert all Jupyter notebooks to markdown files
 import os
+import shutil
 import re
 import sys
 from traitlets.config import Config
@@ -49,8 +50,12 @@ for fil in file_list:
         # Add directory and remove 'png' label from figure references
         if len(md_figs.keys()) > 0:
 
-            if not os.path.exists(fil):
-                os.mkdir(fil)
+            # Clean the directory contents if they exist
+            if os.path.exists(fil):
+                shutil.rmtree(fil)
+
+            # Create the directory
+            os.mkdir(fil)
 
             md_str = re.sub(r"""\[png\]\(""", r'[]({}/'.format(fil), md_str)
 
