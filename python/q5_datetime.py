@@ -1,6 +1,7 @@
 #!/usr/bin/env python
-
+from __future__ import print_function
 from datetime import datetime as dt
+
 
 def calc_days(date_str, date_start, date_stop):
     return (dt.strptime(date_stop, date_str) - dt.strptime(date_start, date_str)).days

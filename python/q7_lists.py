@@ -102,7 +102,7 @@ def linear_merge(list1, list2):
     ['aa', 'aa', 'aa', 'bb', 'bb']
     """
 
-    # This should be fast since it uses Python's sorter
-    # but I'm not sure if the instructions are meant to imply
-    # that this function should not be used
+    # This sort makes a single pass over all lists
+    # And it should be fast since it uses Python's sorted function
+
     return sorted(list1 + list2)

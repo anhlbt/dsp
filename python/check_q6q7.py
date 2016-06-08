@@ -1,10 +1,12 @@
 #!/usr/bin/env python
-
-# Script to check that the outputs of my functions produce
-# results that are identical to 
+from __future__ import print_function
 
 from inspect import getmembers, isfunction
 import re
+
+
+# Script to check that the outputs of my functions produce
+# results that are identical to the docstrings provided in the function.
 
 import q6_strings as q6
 import q7_lists as q7
@@ -28,8 +30,12 @@ for mod_name, mod in test_mod_dict.iteritems():
 
             test_command = '.'.join([mod_name, test])
 
+            eval_test = eval(test_command)
+
+            eval_answer = eval(answer)
+
             try:
-                assert eval(test_command) == eval(answer)
+                assert eval_test == eval_answer
 
             except AssertionError as aerror:
 
@@ -38,6 +44,8 @@ for mod_name, mod in test_mod_dict.iteritems():
 
             else:
 
-                print('Passed: {}.'.format(test_command))
+                print('Passed: {}:'.format(test_command))
+                print('        {} == {}'.format(eval_test, eval_answer))
+                print('')
 
 print('All functions passed.')

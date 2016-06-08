@@ -25,8 +25,10 @@ def donuts(count):
 
     if count >= 10:
         count_str = 'many'
+
     elif count < 1:
         count_str = '0'
+
     else:
         count_str = str(count)
 
@@ -52,6 +54,7 @@ def both_ends(s):
 
     if len(s) < 2:
         return ''
+
     else:
         return s[:2] + s[-2:]
 
@@ -119,8 +122,10 @@ def verbing(s):
     """
 
     if len(s) >= 3:
+
         if s[-3:] == 'ing':
             s += 'ly'
+            
         else:
             s += 'ing'
 
