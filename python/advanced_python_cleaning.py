@@ -22,7 +22,7 @@ strip_sp = lambda x: x.strip()
 
 
 ## Add period whenever next character is a capital or a space
-## This regular expression uses a postivie lookahead assertion
+## This regular expression uses a positive lookahead assertion
 ## to determine what the next letter is.
 clean_degrees = lambda x: re.sub(r"""(\w+?)(?=[ A-Z])""", r'\1.', x+' ').strip()
 
