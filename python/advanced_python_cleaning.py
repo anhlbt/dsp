@@ -76,7 +76,7 @@ faculty[['first_name','last_name']] = ( faculty['name']
 # Accessory formatting functions
 
 ## A function to print lists in a nice format for markdown
-pretty_print_list = lambda the_list: '[' + ',\n '.join(the_list) +']'
+pretty_print_list = lambda the_list: '[' + ',  \n '.join(the_list) +']'
 
 
 ## A function to print dictionaries in a nice format for markdown
@@ -108,7 +108,7 @@ def pretty_print_dict(the_dict, num_items=3, key_list=None):
             if num == (num_items - 1):
                 suffix = '}'
             else:
-                suffix = ',\n'
+                suffix = ',  \n'
 
             print_string += '{}{} : {}{}'.format(prefix, str(key).ljust(max_key_len), the_dict[key], suffix)
 
