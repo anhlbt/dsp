@@ -5,7 +5,7 @@ import warnings
 import requests
 from bs4 import BeautifulSoup as bs
 
-# Misc parsers needed by beautifulsoup and pandas
+# Misc parsers needed by beautifulsoup and pandas at run-time
 # These don't explicitly need to be imported
 # but they're a good test for the try loop
 # that's used to determine if this function is used
