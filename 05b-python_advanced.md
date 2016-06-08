@@ -88,9 +88,9 @@ This data is available in this file:  [faculty.csv](python/faculty.csv)
 
 >> There are 4 different email domains.
 
->> [mail.med.upenn.edu,
- upenn.edu,
- email.chop.edu,
+>> [mail.med.upenn.edu,  
+ upenn.edu,  
+ email.chop.edu,  
  cceb.med.upenn.edu]
 
 Place your code in this file: [advanced_python_regex.py](python/advanced_python_regex.py)
@@ -114,15 +114,15 @@ bryanma@upenn.edu
 
 >> The first ten lines of the email.csv file are:
 
->> [bellamys@mail.med.upenn.edu,
- warren@upenn.edu,
- bryanma@upenn.edu,
- jinboche@upenn.edu,
- sellenbe@upenn.edu,
- jellenbe@mail.med.upenn.edu,
- ruifeng@upenn.edu,
- bcfrench@mail.med.upenn.edu,
- pgimotty@upenn.edu,
+>> [bellamys@mail.med.upenn.edu,  
+ warren@upenn.edu,  
+ bryanma@upenn.edu,  
+ jinboche@upenn.edu,  
+ sellenbe@upenn.edu,  
+ jellenbe@mail.med.upenn.edu,  
+ ruifeng@upenn.edu,  
+ bcfrench@mail.med.upenn.edu,  
+ pgimotty@upenn.edu,  
  wguo@mail.med.upenn.edu]
 
 ---
@@ -136,8 +136,8 @@ faculty_dict = { 'Ellenberg': [['Ph.D.', 'Professor', 'sellenbe@upenn.edu'], ['P
 ```
 Print the first 3 key and value pairs of the dictionary:
 
->> {Putt   : [['Ph.D. Sc.D.', 'Professor', 'mputt@mail.med.upenn.edu']],
-  Feng   : [['Ph.D.', 'Assistant Professor', 'ruifeng@upenn.edu']],
+>> {Putt   : [['Ph.D. Sc.D.', 'Professor', 'mputt@mail.med.upenn.edu']],  
+  Feng   : [['Ph.D.', 'Assistant Professor', 'ruifeng@upenn.edu']],  
   Bilker : [['Ph.D.', 'Professor', 'warren@upenn.edu']]}
 
 
@@ -150,8 +150,8 @@ professor_dict = {('Susan', 'Ellenberg'): ['Ph.D.', 'Professor', 'sellenbe@upenn
 
 Print the first 3 key and value pairs of the dictionary:
 
->> {('Yimei', 'Li')         : ['Ph.D.', 'Assistant Professor', 'liy3@email.chop.edu'],
- ('Hongzhe', 'Li')       : ['Ph.D.', 'Professor', 'hongzhe@upenn.edu'],
+>> {('Yimei', 'Li')         : ['Ph.D.', 'Assistant Professor', 'liy3@email.chop.edu'],  
+ ('Hongzhe', 'Li')       : ['Ph.D.', 'Professor', 'hongzhe@upenn.edu'],  
  ('Knashawn', 'Morales') : ['Sc.D.', 'Associate Professor', 'knashawn@mail.med.upenn.edu']}
 
 >> **NOTE**: my dictionary is not printing as sorted by first name, but this is likely due to differences in the dictionary creation method since dictionary keys aren't inherently sorted anyway. I'm creating my dictionary by converting from a Pandas dataframe.
@@ -160,8 +160,8 @@ Print the first 3 key and value pairs of the dictionary:
 
 ####Q8.  It looks like the current dictionary is printing by first name.  Print out the dictionary key value pairs based on alphabetical orders of the last name of the professors
 
->> {('Scarlett', 'Bellamy') : ['Sc.D.', 'Associate Professor', 'bellamys@mail.med.upenn.edu'],
- ('Warren', 'Bilker')    : ['Ph.D.', 'Professor', 'warren@upenn.edu'],
+>> {('Scarlett', 'Bellamy') : ['Sc.D.', 'Associate Professor', 'bellamys@mail.med.upenn.edu'],  
+ ('Warren', 'Bilker')    : ['Ph.D.', 'Professor', 'warren@upenn.edu'],  
  ('Matthew', 'Bryan')    : ['Ph.D.', 'Assistant Professor', 'bryanma@upenn.edu']}
 
 
