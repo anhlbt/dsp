@@ -23,7 +23,7 @@ def get_faculty_info(theURL='http://www.med.upenn.edu/cceb/biostat/faculty.shtml
 
     # The faculty tables we want are in an iframe
     soup = bs(theHTML.text, 'lxml')
-    iframes = [x.get('src') for x in soup.findAll('iframe')]
+    iframes = [x.get('src') for x in soup.find_all('iframe')]
 
     # Grab data for all iframes and combine into a dataframe
     faculty_table = ( pd.concat( [ pd.read_html(x, header=0)[0]
