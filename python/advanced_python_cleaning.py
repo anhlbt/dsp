@@ -5,7 +5,7 @@ import re
 
 
 try:
-    from advanced_python_scraping import get_degree
+    from advanced_python_scraping import get_faculty_info, get_degree
 
 except:
     scrape_webpage = False
@@ -43,10 +43,12 @@ if not scrape_webpage:
 
 else:
     # Or by scraping the UPenn faculty webpage using requests and beautifulsoup4 for fun
-    Russell_Takesh_Shinohara_degree = get_degree('Russell Takeshi Shinohara')
+    faculty_table = get_faculty_info()
+    Russell_Takesh_Shinohara_degree = get_degree('Russell Takeshi Shinohara', faculty_table)
 
     # Clean the degree name for good measure
     Russell_Takesh_Shinohara_degree = clean_degrees( Russell_Takesh_Shinohara_degree )
+
 
 faculty.loc[faculty['name'] == 'Russell Takeshi Shinohara', 'degree'] = Russell_Takesh_Shinohara_degree
 
@@ -71,7 +73,10 @@ faculty[['first_name','last_name']] = ( faculty['name']
                                        )
 
 
+
 ############################################
+
+
 
 # Accessory formatting functions
 

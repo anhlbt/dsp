@@ -95,6 +95,12 @@ This data is available in this file:  [faculty.csv](python/faculty.csv)
 
 Place your code in this file: [advanced_python_regex.py](python/advanced_python_regex.py)
 
+**NOTE: My code functions make use of two external files:**  
+
+* One the performs data cleaning: [advanced_python_cleaning.py](python/advanced_python_cleaning.py)
+* And an optional one that will scrape the UPenn faculty webpage for missing information: [advanced_python_scraping.py](python/advanced_python_scraping.py)
+
+
 ---
 
 ###Part II - Write to CSV File
