@@ -2,4 +2,5 @@
 .ipynb_checkpoints
 .ipynb_checkpoints/*
 .DS_Store
+markov_input/old_trump_test_transcript.txt
 
