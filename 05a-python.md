@@ -12,7 +12,7 @@ For quick and easy interactive practice with Python, many people enjoy [Codecade
 
 How are Python lists and tuples similar and different? Which will work as keys in dictionaries? Why?
 
->> Lists and tuples are python structures that hold multiple items. Both are ordered and indexed. Tuples are unique because their elements are immuatable--they cannot be changed by reassignment. The elements of a list can be changed. Tuples can be used as dictionary keys, which must also be immutable.
+>> Lists and tuples are python structures that hold multiple items. Both are ordered and indexed. Tuples are unique because their elements are immuatable--once created, they cannot be changed by assignment. The elements of a list can be changed. Tuples can be used as dictionary keys, which must also be immutable.
 
 ---
 
@@ -22,7 +22,7 @@ How are Python lists and sets similar and different? Give examples of using both
 
 >> Lists and sets are both mutable container types. However, lists are ordered and, thus, are numerically indexed. Sets are not ordered and their indexing works slightly diffrently (see next paragraph). Sets are much better suited to functions associated with set theory and grouping, like union, intersection, and difference.
 
->> Sets are faster than lists for determining group membership because, like dictionaries, their index is computed based on the value of the element. Indexes computed in this way are called hash tables. Membership look-up is faster with hash tables because Python only has to calculate the expected index and determine if it is present rather than also checking the value stored at the index.
+>> Sets are faster than lists for determining group membership because, like dictionaries, their index is computed based on the value of the element. Indexes computed in this way are called hash tables. Membership look-up is faster with hash tables because Python only has to calculate the expected index based on the value and determine if it is present, rather than also checking the value stored at the index.
 
 >> Example union and intersection comparison:
 
@@ -72,7 +72,7 @@ print(list_intersect)                                 # [3, 4]
 Describe Python's `lambda`. What is it, and what is it used for? Give at least one example, including an example of using a `lambda` in the `key` argument to `sorted`.
 
 
->> Lambda functions are a type of Python function that often does not have a name. Sometimes this function type is called "anonymous" or "inline." In contrast to regular functions that are declared with `def`, lambda functions are usually simpler and shorter--often one line of code.
+>> Lambda functions are a type of Python function that often does not have a name. Sometimes functions of this type are called "anonymous" or "inline." In contrast to regular functions that are declared with `def`, lambda functions are usually simpler and shorter--often one line of code.
 
 ```python
 from __future__ import print_function
@@ -132,9 +132,8 @@ def get_day_number(day_name, day_mapper=day_mapper):
     return day_mapper[get_day_abbreviation(day_name)]
 
 
+# This is a lambda function
 is_weekend = lambda day_name: get_day_number(day_name) >= 5
-
-
 
 
 my_favorite_days = ['Friday', 'Saturday', 'Sunday']
@@ -199,14 +198,14 @@ Place code in this file: [q5_datetime.py](python/q5_datetime.py)
 ###Q6. Strings
 Edit the 7 functions in [q6_strings.py](python/q6_strings.py)
 
->> The file [check_q6q7.py]((python/check_q6q7.py)) can be executed to check the results of this module based on the examples provided in the function docstrings.
+>> The file [check_q6q7.py]((python/check_q6q7.py)) can be executed to run assertion tests to check the results of this module based on the examples provided in the function docstrings.
 
 ---
 
 ###Q7. Lists
 Edit the 5 functions in [q7_lists.py](python/q7_lists.py)
 
->> The file [check_q6q7.py]((python/check_q6q7.py)) can be executed to check the results of this module based on the examples provided in the function docstrings.
+>> The file [check_q6q7.py]((python/check_q6q7.py)) can be executed to run assertion tests to check the results of this module based on the examples provided in the function docstrings.
 
 ---
 

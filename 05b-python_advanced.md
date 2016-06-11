@@ -180,5 +180,13 @@ If you're all done and looking for an extra challenge, then try the below proble
 
 ### [Markov](python/markov.py) (Optional)
 
+**NOTE: My Markov chain makes use of external files:**  
+
+* A file to scrape the text required to seed the Markov chain, which are transcripts of the 2016 GOP Presidential Candidate debates: [markov_text_download.py](python/markov_text_download.py)
+* All downloaded text data are saved to the following directory: [markov_input](python/markov_input)
+* Two files associated with importing and cleaning the text: [markov_text_cleaning.py](python/markov_text_cleaning.py) and [markov_contractions.py](python/markov_contractions.py)
+* A file that creates the required probability tables from the cleaned text: [markov_table_creation.py](python/markov_table_creation.py)
+* A file that creates weighted discrete distributions of words and characters for sampling: [markov_distribution.py](python/markov_distribution.py)
+
 # -[ ] TODO Finish this
 
