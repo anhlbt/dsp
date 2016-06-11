@@ -16,23 +16,17 @@ else:
 
 # Data import and cleaning
 
-
-## Remove spaces from the ends of entries
-strip_sp = lambda x: x.strip()
-
-
-## Add period whenever next character is a capital or a space
-## This regular expression uses a positive lookahead assertion
-## to determine what the next letter is.
-clean_degrees = lambda x: re.sub(r"""(\w+?)(?=[ A-Z])""", r'\1.', x+' ').strip()
+## Add period whenever next character is a capital or space
+## using a positive lookahead assertion to determine the next character.
+clean_degrees = lambda x: re.sub(r"""(\w)(?=[ A-Z])""", r'\1.', x+' ').strip()
 
 
 ## Import the data and strip extra spaces
 faculty = pd.read_csv('faculty.csv',
                       names=['name', 'degree', 'title', 'email'],
                       skiprows=[0],
-                      converters = {'name' : strip_sp, 'degree' : clean_degrees,
-                                    'title': strip_sp, 'email'  : strip_sp})
+                      skipinitialspace=True,
+                      converters = {'degree' : clean_degrees})
 
 
 ## Add missing degree
@@ -54,11 +48,11 @@ faculty.loc[faculty['name'] == 'Russell Takeshi Shinohara', 'degree'] = Russell_
 
 
 ## Remove department name from title
-faculty['title'] = faculty['title'].str.extract(r"""((?:(?:Assistant|Associate) )?Professor)""", expand=True)
+faculty['title'] = faculty['title'].str.extract(r"""((?:Assistant |Associate )?Professor)""", expand=False)
 
 
 ## Determine email domain
-faculty['email_domain'] = faculty.email.str.extract(r"""@(.+)""", expand=True)
+faculty['email_domain'] = faculty.email.str.extract(r"""@(.+)""", expand=False)
 
 
 ## Extract first and last name:
@@ -66,7 +60,7 @@ faculty['email_domain'] = faculty.email.str.extract(r"""@(.+)""", expand=True)
 ## 2. Also skip any nicknames in parenthesis or middle names
 faculty[['first_name','last_name']] = ( faculty['name']
                                         .str
-                                        .extract(r"""(?:[A-Z]\. )?(.+?)(?: \(?([\w.]+)\)?)? (.+)""", 
+                                        .extract(r"""(?:[A-Z]\.? )?(.+?)(?: \(?([\w.]+)\)?)? (.+)""", 
                                                  expand=True)
                                         .fillna('')
                                         [[0,2]]
@@ -85,16 +79,14 @@ pretty_print_list = lambda the_list: '[' + ',  \n '.join(the_list) +']'
 
 
 ## A function to print dictionaries in a nice format for markdown
-def pretty_print_dict(the_dict, num_items=3, key_list=None):
+def pretty_print_dict(the_dict, num_items=None, key_list=None):
 
     # Handle the case where a subset of the keys is printed
     if key_list is None:
         key_list = the_dict.keys()
 
-    if num_items is None:
-        num_items = len(key_list)
-
-    key_list = key_list[:num_items]
+    if num_items is not None:
+        key_list = key_list[:num_items]
 
     # Set uniform spacing for all keys
     max_key_len = max([len(str(key)) for key in key_list])

@@ -34,16 +34,16 @@ Print the first 3 key and value pairs of the dictionary:
 #                 }
 
 # Pandas-esque method
-faculty_dict = ( faculty
+faculty_dict = ( faculty[['last_name', 'degree', 'title', 'email']]
                  .set_index('last_name')
                  .groupby(level=0)
-                 .apply(lambda x: x[['degree', 'title', 'email']]
+                 .apply(lambda x: x
                                   .values
                                   .tolist())
                  .to_dict()
                )
 
-print(pretty_print_dict(faculty_dict))
+print(pretty_print_dict(faculty_dict, num_items=3))
 
 
 
@@ -73,16 +73,17 @@ Print the first 3 key and value pairs of the dictionary:
 #                   }
 
 # Pandas-esque method
-professor_dict = ( faculty
+professor_dict = ( faculty[['first_name', 'last_name', 'degree', 'title', 'email']]
                    .set_index(['first_name', 'last_name'])
                    .groupby(level=[0,1])
-                   .apply(lambda x: x[['degree', 'title', 'email']]
+                   .apply(lambda x: x
+                                    .values
                                     .squeeze()
                                     .tolist())
-                   .to_dict()
-                 )
+                   .to_dict()                 
+                  )
 
-print(pretty_print_dict(professor_dict))
+print(pretty_print_dict(professor_dict, num_items=3))
 
 
 
@@ -98,5 +99,7 @@ last_name_sort = lambda x: x[1]
 
 key_list = sorted(professor_dict, key=last_name_sort)
 
-print(pretty_print_dict(professor_dict, key_list=key_list))
+print(pretty_print_dict(professor_dict, key_list=key_list, num_items=3))
+
+
 
