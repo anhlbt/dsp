@@ -32,6 +32,11 @@ This data is available in this file:  [faculty.csv](python/faculty.csv)
 | M.D.    |       1 |
 | M.A.    |       1 |
 
+>> The missing degree could be readily determined from external sources, so I added it. (There is also a method for scraping the UPenn data in [advanced_python_scraping.py](python/advanced_python_scraping.py).) However, if the degree could not be determined, I would have omitted it from this analysis and then noted that there was one piece of missing data.
+
+>> For individuals who have multiple degrees, each degree was counted separtely.
+
+>> For cleaning the degrees, it would have been simpler to strip all periods, but I enjoy regular expressions, so I decided to write one that would add all appropriate periods.
 
 ####Q2. Find how many different titles there are, and their frequencies:  Ex:  Assistant Professor, Professor
 
@@ -43,6 +48,7 @@ This data is available in this file:  [faculty.csv](python/faculty.csv)
 | Associate Professor |      12 |
 | Assistant Professor |      12 |
 
+>> Titles were cleaned by removing department afilliation. 
 
 ####Q3. Search for email addresses and put them in a list.  Print the list of email addresses.
 
@@ -95,10 +101,10 @@ This data is available in this file:  [faculty.csv](python/faculty.csv)
 
 Place your code in this file: [advanced_python_regex.py](python/advanced_python_regex.py)
 
-**NOTE: My code functions make use of two external files:**  
+>> **NOTE:** My code functions make use of two external files:
 
-* One the performs data cleaning: [advanced_python_cleaning.py](python/advanced_python_cleaning.py)
-* And an optional one that will scrape the UPenn faculty webpage for missing information: [advanced_python_scraping.py](python/advanced_python_scraping.py)
+>> * One the performs data cleaning: [advanced_python_cleaning.py](python/advanced_python_cleaning.py)
+* And an optional one (written for fun) that will scrape the UPenn faculty webpage for missing information: [advanced_python_scraping.py](python/advanced_python_scraping.py)
 
 
 ---
@@ -180,13 +186,36 @@ If you're all done and looking for an extra challenge, then try the below proble
 
 ### [Markov](python/markov.py) (Optional)
 
-**NOTE: My Markov chain makes use of external files:**  
+>> Sample text produced from `markov.py markov_trump_gop_debate_transcripts.txt 200`:
 
-* A file to scrape the text required to seed the Markov chain, which are transcripts of the 2016 GOP Presidential Candidate debates: [markov_text_download.py](python/markov_text_download.py)
-* All downloaded text data are saved to the following directory: [markov_input](python/markov_input)
-* Two files associated with importing and cleaning the text: [markov_text_cleaning.py](python/markov_text_cleaning.py) and [markov_contractions.py](python/markov_contractions.py)
-* A file that creates the required probability tables from the cleaned text: [markov_table_creation.py](python/markov_table_creation.py)
-* A file that creates weighted discrete distributions of words and characters for sampling: [markov_distribution.py](python/markov_distribution.py)
+>> People are coming in favor of people in the world. We pay more business tax, and I was saying do it but if I am elected dog catcher right the lead plaintiff signed a letter saying how great company. But they are also great love for clothingmakers in this. If these countries, and other hotels in charge of amnesty, he was a little bit of an apology from Ted. Was listening, to, that now for the makebelieve, Chris will tell you have to speak, is taking our jobs. Have just been a lot stronger military, much evolved. And to make America. So I also happened to endorse me is an incident done, is made -- New York, a very nice, and they do not just with respect them greatly. And on budget. It out, you -- they devalue their currencies. That makes absolutely no -- problems, no longer defend all, Marco said under no circumstances will I run, that I raised million for this man, on borders is the best by senators and congressmen. They have to tell me, audit me because I said it loud and insurance lobbyists, and donors that works out I may have discussed that subject. Of conversation by everybody, which
 
-# -[ ] TODO Finish this
+>> **NOTE:** My code makes use of two external files:
+
+>> * Cleaned transcripts of Donald Trump's performance at the GOP Presidential Debates for the 2016 election: [markov_trump_gop_debate_transcripts.txt](python/markov_trump_gop_debate_transcripts.txt)
+* A file that creates the required weighted n-gram tables from the cleaned text: [markov_table_creation.py](python/markov_table_creation.py)
+
+>> **Design decisions and discussion:** 
+
+>> The downloaded transcripts were cleaned in the following way:
+
+>> * All text other than that from Donald Trump was removed.
+* Remaining text was combined into a single, continuous file.
+* With the exception of possessive forms of words, all contractions were converted to their expanded (proper) form. This was intended to improve accuracy of the statistics. Without cleaning, `I'm` and `I am` would be considered different by the model.
+* Possesive forms of words were maintained, although in some cases the apostrophe was inadvertently removed. Efforts were made to remedy this mistake, but missing apostrophes may persist.
+* All punctuation (`.` `,` `;` `!` `?` `--`) was retained but tokenized separately from the words themselves. Within the cleaned text file, spaces were added between all punctuation marks to facilitate tokenization. Unecessary spaces were cleaned from the final text.
+* With the exception of proper nouns and acronyms, all words were converted to their lower case forms. This was intended to further improve accuracy of the probability distribution used by the model. Every effort was made to clean the proper nouns, but as this text contains MANY proper nouns (a downside of using political speeches), there may be words which were errantly not capitalized.
+
+>> Design decisions were also made with regards to n-gram and model creation:
+
+
+>> * Tokenized punctuation was not counted as part of the requested word count.
+* Tokenized text was also ignored when the next n-gram was chosen. Instead, the non-punctuation word closest to the end of the nascent text list was chosen. This was done since the flow of text likely depends more on the previous (real) word than on punctuation.
+* Rather than retaining duplicate copies of n-grams as a means of representing a distribution and then randomly selecting from them, I decided to use a discrete distribution sampler from SciPy (`rv_discrete`). Besides affording me the opportunity to learn how it works, there are some potential advantages for very large corpora with regards to memory useage. 
+* The standard method of creating a text Markov chain model with Python usually involves dictionaries, and I read through several of them online. I decided to use Pandas for fun. There are both potential upsides and downsides with regards to memory usage and speed for very large models, but more testing would be needed to fully understand them. Pandas did have some advantages with regards to normalizing the data for the discrete distribution sampler used.
+* To further improve accuracy, one could use larger n-gram models and/or longer sequences of words to select the next n-gram. The downside is that more stringent models will tend to simply pull out the original text.
+
+
+
+
 
