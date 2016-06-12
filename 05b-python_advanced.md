@@ -190,9 +190,10 @@ If you're all done and looking for an extra challenge, then try the below proble
 
 >> People are coming in favor of people in the world. We pay more business tax, and I was saying do it but if I am elected dog catcher right the lead plaintiff signed a letter saying how great company. But they are also great love for clothingmakers in this. If these countries, and other hotels in charge of amnesty, he was a little bit of an apology from Ted. Was listening, to, that now for the makebelieve, Chris will tell you have to speak, is taking our jobs. Have just been a lot stronger military, much evolved. And to make America. So I also happened to endorse me is an incident done, is made -- New York, a very nice, and they do not just with respect them greatly. And on budget. It out, you -- they devalue their currencies. That makes absolutely no -- problems, no longer defend all, Marco said under no circumstances will I run, that I raised million for this man, on borders is the best by senators and congressmen. They have to tell me, audit me because I said it loud and insurance lobbyists, and donors that works out I may have discussed that subject. Of conversation by everybody, which
 
->> **NOTE:** My code makes use of two external files:
+>> **NOTE:** My code makes use of three external files:
 
->> * Cleaned transcripts of Donald Trump's performance at the GOP Presidential Debates for the 2016 election: [markov_trump_gop_debate_transcripts.txt](python/markov_trump_gop_debate_transcripts.txt)
+>> * A Python library that facilitated scraping the transcripts from the web [markov_text_download.py](python/markov_text_download.py). Note that this code is not needed for running the program and I did not upload the raw text.
+* The transcripts from the GOP Presidential Debates for the 2016 election with Donald Trump's portion only: [markov_trump_gop_debate_transcripts.txt](python/markov_trump_gop_debate_transcripts.txt)
 * A file that creates the required weighted n-gram tables from the cleaned text: [markov_table_creation.py](python/markov_table_creation.py)
 
 >> **Design decisions and discussion:** 
