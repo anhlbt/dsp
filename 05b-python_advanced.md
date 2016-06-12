@@ -211,7 +211,7 @@ If you're all done and looking for an extra challenge, then try the below proble
 
 
 >> * Tokenized punctuation was not counted as part of the requested word count.
-* Tokenized text was also ignored when the next n-gram was chosen. Instead, the non-punctuation word closest to the end of the nascent text list was chosen. This was done since the flow of text likely depends more on the previous (real) word than on punctuation.
+* Tokenized punctuation was also ignored when the next n-gram was chosen. Instead, the non-punctuation word closest to the end of the nascent text list was chosen. This was done since the flow of text likely depends more on the previous (real) word than on punctuation.
 * Rather than retaining duplicate copies of n-grams as a means of representing a distribution and then randomly selecting from them, I decided to use a discrete distribution sampler from SciPy (`rv_discrete`). Besides affording me the opportunity to learn how it works, there are some potential advantages for very large corpora with regards to memory useage. 
 * The standard method of creating a text Markov chain model with Python usually involves dictionaries, and I read through several of them online. I decided to use Pandas for fun. There are both potential upsides and downsides with regards to memory usage and speed for very large models, but more testing would be needed to fully understand them. Pandas did have some advantages with regards to normalizing the data for the discrete distribution sampler used.
 * To further improve accuracy, one could use larger n-gram models and/or longer sequences of words to select the next n-gram. The downside is that more stringent models will tend to simply pull out the original text.
