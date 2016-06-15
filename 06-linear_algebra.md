@@ -21,4 +21,6 @@ There are matrix operations exercises in the [Matrix Algebra Worksheet](math/mat
 
 Place your Python code (with results in comment) in this file: [matrix_algebra.py](math/matrix_algebra.py)
 
+>> Answers are available in comment form within the code in [matrix_algebra.py](math/matrix_algebra.py) and in handwritten form in [matrix_algebra_worksheet.pdf](math/matrix_algebra_worksheet.pdf).
+
 
