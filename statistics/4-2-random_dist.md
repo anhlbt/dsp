@@ -9,7 +9,8 @@ This questions asks you to examine the function that produces random numbers. Is
 
 This markdown file has been converted from a Jupyter notebook using [convert_notebooks_to_markdown.py](./convert_notebooks_to_markdown.py).
 
-# - [ ]: Finish this question
+# - [ ]: Finish this question (redo with uniform distributions)
+
 
 # Answer
 

@@ -44,6 +44,11 @@ for fil in file_list:
         if sys.version_info[0] == 2:
             md_str = md_str.encode('utf8')
 
+        # Setup the conversion note
+        md_str = re.sub(r"""This notebook has been converted to a markdown file""",
+                        'This markdown file has been converted from a Jupyter notebook',
+                        md_str)
+
         # Get the base64 encoded images
         md_figs = md_res['outputs']
 
