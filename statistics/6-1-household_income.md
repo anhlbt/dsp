@@ -18,15 +18,30 @@ Compute the median, mean, skewness and Pearson’s skewness of the resulting sam
 This markdown file has been converted from a Jupyter notebook using [convert_notebooks_to_markdown.py](./convert_notebooks_to_markdown.py).
 
 
-# - [ ] Finish this question
+# - [ ] Finish text for this question
 
 # Answer
 
 
 
-```python
-print('ANSWER GOES HERE.')
-```
+
+
+INSERT TEXT HERE
+
+|               |   1000000 |   5000000 |   10000000 |
+|:--------------|----------:|----------:|-----------:|
+| mean          | 74278.708 | 99117.595 | 124267.397 |
+| median        | 51226.933 | 51226.933 |  51226.933 |
+| skew          |     4.950 |    10.251 |     11.604 |
+| pearsons_skew |     0.736 |     0.465 |      0.392 |
+
+
+
+
+
+
+
+![](6-1-household_income/output_2_0.png)
 
 
 # Code
@@ -34,16 +49,155 @@ print('ANSWER GOES HERE.')
 
 
 ```python
+import pandas as pd
 import numpy as np
-import scipy.stats as stats
-
 import matplotlib.pyplot as plt
 import seaborn as sns
-
 from tabulate import tabulate
-from load_ThinkStats import load_FemPreg
 
 %matplotlib inline
-# %config InlineBackend.close_figures = False
+%config InlineBackend.close_figures = False
 ```
+
+
+The list of maximum income ranges to test.
+
+
+
+```python
+log_upper = [6.0, np.log10(5.0e6), 7.0]
+```
+
+
+Import and clean the data, convert income to a logarithmic scale for resampling.
+
+
+
+```python
+# Import as a dataframe
+thinkstats_path = '/Volumes/Files/datascience_books/ThinkStats2/code'
+
+data = pd.read_csv(os.sep.join([thinkstats_path, 'hinc06.csv']), 
+                   header=None, skiprows=9, 
+                   names=['income_str','freq'], usecols=[0,1])
+
+# Fix column formatting, determine lower and upper limit for income in each bracket
+data['freq'] = data.freq.str.replace(',','').astype(int)
+
+data['income_low'] = ( data.income_str
+                .str.extract(r"""([0-9,]+)""", expand=False)
+                .str.replace(',','')
+                .astype(float)
+              )
+
+data['income_high'] = (data.income_low.shift(-1) - 1).fillna(np.inf)
+data.drop(['income_str','income_low'], axis=1, inplace=True)
+
+# Log scale conversion
+data['log_upper'] = np.log10(data.income_high)
+data['log_lower'] = data.log_upper.shift(1).dropna()
+
+# Lowest yearly income amount is set to $1000 (10**3)
+data.loc[0, 'log_lower'] = 3.0 
+```
+
+
+Resample the data using a log-linear distribution.
+
+
+
+```python
+# The resampling function
+def freq_resampler(df, log_upper=None):
+        
+    # This resampling method only works on Series
+    series = df.squeeze()
+    
+    if not np.isinf(series.log_upper):
+        log_upper = series.log_upper
+        
+    resampled_data =  pd.DataFrame({'log_income': np.linspace(series.log_lower, 
+                                                              log_upper, 
+                                                              series.freq)})
+    return resampled_data
+
+
+resampled_data = map(lambda y: ( data.groupby(level=0, group_keys=False)
+                                 .apply(lambda x: freq_resampler(x, y))
+                                ), log_upper)
+
+resampled_data = pd.concat(resampled_data, axis=1)
+
+resampled_data.columns = map(lambda x: int(np.round(10**x, 0)), log_upper)
+```
+
+
+Compute statistics on the results.
+
+
+
+```python
+def pearsons_skew(data):
+    return 3.0*(data.mean() - data.median()) / data.std()
+
+statistics = ( (10**resampled_data)
+              .stack()
+              .groupby(level=-1)
+              .agg(['mean', 'median', 'skew', pearsons_skew])
+             ).T
+```
+
+
+
+
+```python
+print(tabulate(statistics,
+               headers=statistics.columns.tolist(),
+               tablefmt='pipe',
+               floatfmt=".3f")
+     )
+```
+
+
+|               |   1000000 |   5000000 |   10000000 |
+|:--------------|----------:|----------:|-----------:|
+| mean          | 74278.708 | 99117.595 | 124267.397 |
+| median        | 51226.933 | 51226.933 |  51226.933 |
+| skew          |     4.950 |    10.251 |     11.604 |
+| pearsons_skew |     0.736 |     0.465 |      0.392 |
+
+
+Plot the log distribution of income relative to the CDF.
+
+
+
+```python
+cdf = resampled_data.cumsum() / resampled_data.sum()
+combined_data = pd.concat([resampled_data, cdf], axis=1)
+combined_data.columns = pd.MultiIndex.from_product([['income', 'cdf'], resampled_data.columns])
+```
+
+
+
+
+```python
+sns.set_context('talk')
+sns.set_style('whitegrid')
+
+fig = plt.figure()
+fig.set_size_inches(7, 5)
+ax = plt.axes()
+
+_ = combined_data.stack().groupby(level=-1).plot('income', 'cdf', kind='line', ax=ax)
+
+lines, labels = ax.get_legend_handles_labels()
+ax.legend(lines, combined_data.columns.get_level_values(1).unique(),loc=0)
+_ = ax.set_ylim(0, 1.1)
+_ = ax.set_xlabel('log(income)')
+_ = ax.set_ylabel('CDF')
+```
+
+
+
+![](6-1-household_income/output_16_0.png)
 
