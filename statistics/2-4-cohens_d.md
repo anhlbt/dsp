@@ -19,8 +19,8 @@ All values determined for Cohen's d are less than 0.1 of their respective pooled
 
 |      |   prglngth |   totalwgt |
 |:-----|-----------:|-----------:|
-| all  |      0.029 |      0.089 |
-| full |      0.026 |      0.087 |
+| all  |      0.028 |      0.089 |
+| full |      0.029 |      0.087 |
 
 
 # Code
@@ -54,10 +54,10 @@ Drop any invalid (`na`) data and select only live births. Separate the birth dat
 
 
 ```python
-df.dropna(subset=['birthord'], inplace=True)
+df.dropna(subset=['birthord', 'prglngth', 'totalwgt'], inplace=True)
 df = df.loc[df.outcome==1]
 
-assert df.shape[0] == 9148
+assert df.shape[0] == 9038
 assert (df.outcome==1).all() == True
 
 df['birthord'] = df.birthord.astype(np.int)
@@ -152,10 +152,10 @@ print(tabulate(stats,
 
 |                     |   prglngth_mean |   prglngth_pct |   prglngth_var |   totalwgt_mean |   totalwgt_pct |   totalwgt_var |
 |:--------------------|----------------:|---------------:|---------------:|----------------:|---------------:|---------------:|
-| ('(0, 1]', 'all')   |          38.601 |          0.482 |          7.795 |           7.201 |          0.483 |          2.018 |
-| ('(0, 1]', 'full')  |          38.713 |          0.483 |          6.006 |           7.238 |          0.483 |          1.827 |
-| ('(1, 10]', 'all')  |          38.523 |          0.518 |          6.843 |           7.326 |          0.517 |          1.944 |
-| ('(1, 10]', 'full') |          38.653 |          0.517 |          4.699 |           7.356 |          0.517 |          1.803 |
+| ('(0, 1]', 'all')   |          38.609 |          0.483 |          7.808 |           7.201 |          0.483 |          2.018 |
+| ('(0, 1]', 'full')  |          38.723 |          0.483 |          5.997 |           7.238 |          0.483 |          1.827 |
+| ('(1, 10]', 'all')  |          38.534 |          0.517 |          6.672 |           7.326 |          0.517 |          1.944 |
+| ('(1, 10]', 'full') |          38.655 |          0.517 |          4.704 |           7.356 |          0.517 |          1.803 |
 
 
 ## Calculate Cohen's d
@@ -197,6 +197,6 @@ print(tabulate(cohens_d,
 
 |      |   prglngth |   totalwgt |
 |:-----|-----------:|-----------:|
-| all  |      0.029 |      0.089 |
-| full |      0.026 |      0.087 |
+| all  |      0.028 |      0.089 |
+| full |      0.029 |      0.087 |
 
