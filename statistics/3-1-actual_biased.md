@@ -171,14 +171,11 @@ sns.set_style('white')
 fig = plt.figure()
 fig.set_size_inches(7, 5)
 
-ax = plt.axes()
-
 ax = ( household_kids[['biased','unbiased']]
          .plot(kind='line', 
                drawstyle='steps',
                lw=2.0,
                xlim=(klim[0]-0.25, klim[1]+1.25),
-               figsize=(7,5),
                ax=ax)
       )
 
