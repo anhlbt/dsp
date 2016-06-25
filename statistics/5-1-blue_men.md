@@ -28,6 +28,7 @@ Approximately 34% of the US male population has a height within the range allowa
 
 
 ```python
+from __future__ import print_function
 import numpy as np
 import scipy.stats as stats
 import matplotlib.pyplot as plt
@@ -152,9 +153,9 @@ ax.fill_between(height_range[height_mask],cdf[height_mask],
 
 
 ax.set_xlim(height_range.min(), height_range.max())
-ax.set_xlabel('Height (cm)')
-ax.set_ylabel('Cumulative Percent of US Male Population')
-ax.legend(loc=2)
+_ = ax.set_xlabel('Height (cm)')
+_ = ax.set_ylabel('Cumulative Percent of US Male Population')
+_ = ax.legend(loc=2)
 _ = ax.set_title('Cumulative Distribution Function')
 
 ```
