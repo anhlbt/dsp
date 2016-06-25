@@ -11,7 +11,7 @@ This markdown file has been converted from a Jupyter notebook using [convert_not
 
 # Answer
 
-The values generated computationally by random number generators are pseudorandom. Thus, they don't actually have the same probability. The plot on the left of the CDFs for array with two different seeds shows deviations from the expected line (shown in gray). (*NOTE:* I skipped the PMF plot on purpose. It doesn't show that much useful information and Allen's libraries perform significant manipulations on the data to actually make this plot viewable.)
+The values generated computationally by random number generators are pseudorandom. Thus, they don't actually have the same probability. The plot on the left of the CDFs for array with two different seeds shows deviations from the expected line (shown in gray). (**NOTE:** I skipped the PMF plot on purpose. It doesn't really show useful information and Allen's libraries perform significant manipulations on the data to actually make this plot viewable.)
 
 A related observation that is both useful and dangerous (depending on the situation) is that an identical array will be produced whenever the random number generator is initiated to the same state.
 
