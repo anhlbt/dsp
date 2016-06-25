@@ -9,19 +9,27 @@ This questions asks you to examine the function that produces random numbers. Is
 
 This markdown file has been converted from a Jupyter notebook using [convert_notebooks_to_markdown.py](./convert_notebooks_to_markdown.py).
 
-# - [ ]: Finish this question (redo with uniform distributions)
-
-
 # Answer
 
+The values generated computationally by random number generators are pseudorandom. Thus, they don't actually have the same probability. The plot on the left of the CDFs for array with two different seeds shows deviations from the expected line (shown in gray). (*NOTE:* I skipped the PMF plot on purpose. It doesn't show that much useful information and Allen's libraries perform significant manipulations on the data to actually make this plot viewable.)
+
+A related observation that is both useful and dangerous (depending on the situation) is that an identical array will be produced whenever the random number generator is initiated to the same state.
+
+There was recently an excellent article on pitfalls with random number generation on a [blog that I read](http://www.johndcook.com/blog/2016/01/29/random-number-generator-seed-mistakes/).
 
 
-```python
-print('ADD ANSWER AND MAYBE A PLOT')
-```
 
 
-ADD ANSWER AND MAYBE A PLOT
+
+
+![](4-2-random_dist/output_1_0.png)
+
+
+
+
+
+
+The two arrays from the random number generator with the same state are identical: True
 
 
 # Code
@@ -30,8 +38,8 @@ ADD ANSWER AND MAYBE A PLOT
 
 ```python
 import numpy as np
-from scipy import stats
 import pandas as pd
+import random
 
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -41,104 +49,116 @@ import seaborn as sns
 ```
 
 
+Some helper functions for generating random arrays, PMFs, and CDFs.
+
 
 
 ```python
-def generate_pdf_cdf_pandas(samples, decimals=4):
+def generate_array(size):
+    # Generate a random array of specified size
+    return np.array(map(lambda x: random.random(), range(size)))
 
-    # Put the samples into a series, rounding helps create a distribution
-    sample_df = pd.Series(samples.round(decimals))
-
-    # Convert to a dataframe with the number of occurrences of each value
-    sample_df = ( sample_df
-                 .value_counts()
-                 .to_frame()
+def make_PMF(random_array):
+    # A function to sort a random arry and return a dataframe
+    # consisting of values and normalized probabilities
+    
+    random_array = random_array.copy()
+    
+    pmf_array = pd.DataFrame({'value':sorted(random_array), 
+                              'prob':[1]*len(random_array)},
+                             columns=['value', 'prob'])
+    pmf_array = (pmf_array
+                 .groupby('value')
+                 .sum()
+                 .sort_index()
                  .reset_index()
-                 .rename(columns={'index':'samples',0:'counts'})
-                 .sort_values('samples')
-                 .reset_index(drop=True)
-                )
-
-    # Calculate the PMF and the CDF
-    sample_df['pmf'] = sample_df.counts.astype(np.float) / sample_df.counts.sum()
-    sample_df['cdf'] = sample_df.pmf.cumsum()
+                 )
     
-    return sample_df
-```
-
-
-For good measure, here is a version of the above function using only numpy.
-
-
-
-```python
-def generate_pdf_cdf(samples, decimals=4):
+    pmf_array['prob'] /= np.float(pmf_array.prob.sum())
     
-    # Create an array of all rounded values
-    full_samples = distribution_42.copy().round(decimals)
+    return pmf_array
+
+
+def make_CDF(pmf_array):
+    # Convert a PMF into a CDF
     
-    # Convert this to a unique, sorted array
-    samples = np.sort(np.unique(full_samples))
-
-    # Get the counts for each entry
-    counts = np.array([(full_samples==x).sum() for x in samples])
+    cdf_array = pmf_array.copy()
+    cdf_array['prob'] = cdf_array.prob.cumsum()
     
-    # Calculate the PMF and CDF
-    pmf = counts.astype(np.float) / counts.sum()
-    cdf = pmf.cumsum()
-    
-    return {'samples':samples, 'counts':counts, 'pmf':pmf, 'cdf':cdf}
+    return cdf_array
 ```
 
+
+## Random sampling and distributions
+Generate arrays with 1000 randomly sampled values from a uniform distribution. This is done with two different random seeds (42 and 10). For the second random seed, two random arrays are generated from the same starting state to further demonstrate that the random number generator is pseudo-random.
 
 
 
 ```python
-nsamples = 5000
+size = 1000
 
-np.random.seed(42)
-distribution_42 = np.random.normal(loc=0.0, scale=1.0, size=nsamples)
+# Random data with seed of 42
+random.seed(42)
 
-#df_42 = generate_pdf_cdf_pandas(distribution_42)
+rand_42 = generate_array(size)
+pmf_42 = make_PMF(rand_42)
+cdf_42 = make_CDF(pmf_42)
+
+# Random data with seed of 10
+random.seed(10)
+state = random.getstate()
+
+rand_10 = generate_array(size)
+pmf_10 = make_PMF(rand_10)
+cdf_10 = make_CDF(pmf_10)
+
+random.setstate(state)
+rand_10_2 = generate_array(size) # second random array
 ```
 
+
+## Similarity of arrays with same seed
+
+It is easy to demonstrate that random arrays generated from a random number generator with the same starting state will be identical.
 
 
 
 ```python
-stats.probplot(distribution_42, dist='norm', plot=plt)
-plt.show()
+are_identical = np.allclose(rand_10, rand_10_2)
+print('The two arrays from the random number generator with the same state are identical: {}'.format(are_identical))
 ```
 
 
+The two arrays from the random number generator with the same state are identical: True
 
-![](4-2-random_dist/output_8_0.png)
 
+## Visualize PMFs and CDFs
 
 
 
 ```python
-np.random.seed(84)
-distribution_84 = np.random.normal(loc=0.0, scale=1.0, size=nsamples)
+sns.set_context('talk')
+sns.set_style('whitegrid')
+
+fig, [ax1, ax2] = plt.subplots(ncols=2)
+fig.set_size_inches(14, 5)
+
+ax1.plot([0,1], [0,1], color='gray', lw=1.0)
+cdf_42.plot('value', 'prob', ax=ax1, label='seed 42')
+cdf_10.plot('value', 'prob', ax=ax1, label='seed 10')
+
+ax1.set_xlim((0,1))
+ax1.set_ylim((0,1))
+ax1.set_xlabel('Value')
+ax1.set_ylabel('Cumulative Distribution Function (CDF)')
+ax1.legend(loc=0)
+
+ax2.plot(rand_10, rand_10_2, marker='', ls='-')
+ax2.set_xlabel('Random Array 1 (seed=10)')
+_ = ax2.set_ylabel('Random Array 2 (seed=10)')
 ```
 
 
 
-
-```python
-stats.probplot(distribution_84, dist='norm', plot=plt)
-plt.show()
-```
-
-
-
-![](4-2-random_dist/output_10_0.png)
-
-
-
-
-```python
-xdata_42 = np.linspace(df_42.samples.min(), df_42.samples.max(), df_42.shape[0])
-compare_42 = stats.norm.cdf(xdata_42, loc=0.0, scale=1.0)
-```
+![](4-2-random_dist/output_12_0.png)
 
