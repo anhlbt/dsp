@@ -7,9 +7,11 @@ This markdown file has been converted from a Jupyter notebook using [convert_not
 
 # Answer
 
-Cohen's d for firstborn babies vs all others has been calculated for the difference between pregnancy length (`prglngth`) and total weight (`totalwgt`) for all pregnancies and for only those determined to be full-term (> 27 weeks).
+Cohen's d for firstborn babies vs all others has been calculated for the difference between pregnancy length (`prglngth`) and total weight (`totalwgt`) for all pregnancies (`all`) and for only those determined to be full-term (> 27 weeks) (`full`). 
 
-All values are less than 0.1 of their respective pooled standard deviations. These are small effect sizes.
+I decided to examine the difference between all pregnancies and only those that were full term based on Slack discussion about which group was used in the book.
+
+All values determined for Cohen's d are less than 0.1 of their respective pooled standard deviations. Thus, these are small effect sizes. We can determine that there is little difference between pregnancy length and total weight for firstborn vs other babies, and this is true regardless of whether non-full term pregnancies are examined.
 
 
 
@@ -26,6 +28,7 @@ All values are less than 0.1 of their respective pooled standard deviations. The
 
 
 ```python
+from __future__ import print_function
 import pandas as pd
 import numpy as np
 
@@ -46,14 +49,18 @@ df.rename(columns={'totalwgt_lb':'totalwgt'}, inplace=True)
 
 ## Clean and bin the data into first born vs others
 
-Drop any invalid (`na`) data and separate the birth data into two groups (first born and all others).
+Drop any invalid (`na`) data and select only live births. Separate the birth data into two groups (first born and all others).
 
 
 
 ```python
 df.dropna(subset=['birthord'], inplace=True)
-df['birthord'] = df.birthord.astype(np.int)
+df = df.loc[df.outcome==1]
 
+assert df.shape[0] == 9148
+assert (df.outcome==1).all() == True
+
+df['birthord'] = df.birthord.astype(np.int)
 df['birthord_bin'] = pd.cut(df.birthord, [0,1, df.birthord.max()])
 ```
 
@@ -67,24 +74,23 @@ print(tabulate(df[['birthord_bin','birthord']]
                  .drop_duplicates()
                  .set_index('birthord_bin'), 
                headers=['birthord'],
-               tablefmt='pipe',
-               floatfmt=".3f")
+               tablefmt='pipe')
       )
 ```
 
 
 |         |   birthord |
 |:--------|-----------:|
-| (0, 1]  |      1.000 |
-| (1, 10] |      2.000 |
-| (1, 10] |      3.000 |
-| (1, 10] |      4.000 |
-| (1, 10] |      5.000 |
-| (1, 10] |      6.000 |
-| (1, 10] |      7.000 |
-| (1, 10] |      8.000 |
-| (1, 10] |      9.000 |
-| (1, 10] |     10.000 |
+| (0, 1]  |          1 |
+| (1, 10] |          2 |
+| (1, 10] |          3 |
+| (1, 10] |          4 |
+| (1, 10] |          5 |
+| (1, 10] |          6 |
+| (1, 10] |          7 |
+| (1, 10] |          8 |
+| (1, 10] |          9 |
+| (1, 10] |         10 |
 
 
 ## Calculate birth weight statistics
