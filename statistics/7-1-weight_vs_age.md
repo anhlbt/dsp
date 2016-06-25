@@ -15,7 +15,7 @@ This markdown file has been converted from a Jupyter notebook using [convert_not
 The values determined for Pearson's and Spearman's correlation (0.069 and 0.095, respectively) indicate birth weight and mother's age are weakly correlated. The difference between these two values also indicates some non-linearity in the data.
 
 
-The scatter and quantile plots support the conclusion that that age and birth weight are not strongly correlated.
+The scatter and quantile plots support the conclusion that that age and birth weight are not strongly correlated. Note that I binned the data every 2.5 years whereas the answers provided with the book binned the data every 3 years. This likely explains slight variations in the quantiles.
 
 
 
