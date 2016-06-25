@@ -52,6 +52,8 @@ This uses a custom library I wrote called [`load_ThinkStats`](load_ThinkStats.py
 
 ```python
 df = load_survey_data('2002FemResp', columns=['numkdhh'])
+df.dropna(inplace=True)
+assert df.shape[0] == 7643
 ```
 
 
@@ -170,6 +172,8 @@ sns.set_style('white')
 
 fig = plt.figure()
 fig.set_size_inches(7, 5)
+
+ax = plt.axes()
 
 ax = ( household_kids[['biased','unbiased']]
          .plot(kind='line', 
