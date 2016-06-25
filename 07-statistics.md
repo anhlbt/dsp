@@ -59,13 +59,8 @@ This problem presents a robust example of actual vs biased data.  As a data scie
 ###Q3. [Think Stats Chapter 4 Exercise 2](statistics/4-2-random_dist.md) (random distribution)  
 This questions asks you to examine the function that produces random numbers.  Is it really random?  A good way to test that is to examine the pmf and cdf of the list of random numbers and visualize the distribution.  If you're not sure what pmf is, read more about it in Chapter 3.  
 
-# - [ ] TODO: FINISH THE ABOVE PROBLEM
-
 ###Q4. [Think Stats Chapter 5 Exercise 1](statistics/5-1-blue_men.md) (normal distribution of blue men)
 This is a classic example of hypothesis testing using the normal distribution.  The effect size used here is the Z-statistic. 
-
-
-# - [ ] TODO: ANSWER THESE
 
 ###Q5. Bayesian (Elvis Presley twin) 
 
@@ -73,14 +68,23 @@ Bayes' Theorem is an important tool in understanding what we really know, given 
 
 Elvis Presley had a twin brother who died at birth.  What is the probability that Elvis was an identical twin? Assume we observe the following probabilities in the population: fraternal twin is 1/125 and identical twin is 1/300.  
 
->> REPLACE THIS TEXT WITH YOUR RESPONSE
+>> We want to know the probability that Elvis was an identical twin *given* that he was a twin. This amounts to solving for P( *i* | *t* ), where *i* = identical twin and *t* = twin.
+
+>> We know that P( *t* ) = P( *i* ) + P( *f* ), where *f* = fraternal, because identical and fraternal twins are mutually exclusive options. Bayes' Theorem (or part of it) tells us that P( *i* ) = P( *i* | *t* ) * P( *t* ).
+
+>> By rearrangement, P( *i* | *t* ) = P( *i* ) / P( *t* ) = P( *i* ) / [ P( *i* ) + P( *f* ) ].
+
+>> Substituting in the known values for the last equation yields: (1/300) / [ (1/300) + (1/125) ] = 5/17. So the probability that Elvis was an identical twin given that he was a twin is 5/17 (29%).
 
 ---
+
 
 ###Q6. Bayesian & Frequentist Comparison  
 How do frequentist and Bayesian statistics compare?
 
->> REPLACE THIS TEXT WITH YOUR RESPONSE
+>> Frequentist statistics apply probability very selectively and usually in a way that is associated with sampling, whereas Bayesian methods utilize probability more widely. For example, a frequentist approach to a problem would typically involve accepting or rejecting the null hypothesis, thus yielding a binary answer. The notion of probability, such as with a confidence interval or p-value, comes into play only when considering multiple repeats of an experiment (i.e. sampling). 
+
+>> Bayesian statistics don't have to construct such a complicated scenario to treat probability. Instead, they consider all possibile existing states, which are collectively called a prior distribution. This distribution is then updated based on experimental data to produce a posterior probability.
 
 ---
 
