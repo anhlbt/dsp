@@ -162,6 +162,9 @@ print(tabulate(stats,
 
 Use the statistics table to calculate Cohen's d for pregnancy length and birthweight for firstborn vs. all other babies.
 
+Cohen's d is the difference in means between two groups divided by their pooled standard deviations:
+$$d = \frac{\bar{x_1} - \bar{x_2}}{S}$$
+
 
 
 ```python
