@@ -14,6 +14,7 @@ This markdown file has been converted from a Jupyter notebook using [convert_not
 
 
 The unbiased and biased mean number of children is 1.0 and 2.4, respectively.
+The occurrence of biased counting is an important consideration during data collection and analysis.
 
 |      |   unbiased |   biased |
 |:-----|-----------:|---------:|
@@ -30,6 +31,7 @@ The unbiased and biased mean number of children is 1.0 and 2.4, respectively.
 
 
 ```python
+from __future__ import print_function
 import pandas as pd
 import numpy as np
 
@@ -188,9 +190,9 @@ ax.fill_between(household_kids.num_kids, household_kids.unbiased,
                 interpolate=False, step='post', 
                 color='green', alpha=0.25, zorder=-1)
 
-ax.set_xlabel('Number of Children')
-ax.set_ylabel('Probability')
-ax.set_title('Unbiased vs Biased Distribution of Children in Household')
+_ = ax.set_xlabel('Number of Children')
+_ = ax.set_ylabel('Probability')
+_ = ax.set_title('Unbiased vs Biased Distribution of Children in Household')
 
 xticks = ax.get_xticks()[1:-2].astype(np.int)
 _ = ax.set_xticks(xticks+0.5)
