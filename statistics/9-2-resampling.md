@@ -19,13 +19,6 @@ The p-values resulting from the two different models (permutation and resampling
 
 
 
-```python
-print(tabulate(perm_stats,
-               headers=perm_stats.columns.tolist(),
-               tablefmt='pipe',
-               floatfmt=".4f")
-     )
-```
 
 
 |          |   prglngth |   totalwgt_lb |
@@ -37,13 +30,6 @@ print(tabulate(perm_stats,
 
 
 
-```python
-print(tabulate(resample_stats,
-               headers=resample_stats.columns.tolist(),
-               tablefmt='pipe',
-               floatfmt=".4f")
-     )
-```
 
 
 |          |   prglngth |   totalwgt_lb |
@@ -110,6 +96,10 @@ df = df.sort_values('birthord_bin').reset_index(drop=True)
 ## Shuffle or permute data
 
 Helper functions to either permute or resample a dataframe.
+
+### NOTE
+
+These functions are pretty slow for 10,000 samples. I suspect there is too much dataframe shuffling and indexing going on. They should be re-written to initially convert the dataframe to a numpy array (usually faster), perform the simulations, and then calculate and return the mean values. I am in need of a break and the deadline is approaching, so this will have to wait for another day.
 
 
 
